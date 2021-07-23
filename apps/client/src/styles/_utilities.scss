@@ -1,0 +1,27 @@
+// Utilities
+// aligin, position, display, flex, float, spacing, text ...etc
+
+// *:focus{
+//   outline: none;
+// }
+// *[ng-reflect-router-link] {
+//   cursor: pointer;
+// }
+// *[routerlinkactive="active"].active {
+//   cursor: inherit;
+// }
+// *[ng-reflect-router-link]:hover {
+//   color:$link-hover-color;
+// }
+// spacing
+.ui-pt-20 {
+  padding-top: 20px;
+}
+.ui-ml-10 {
+  margin-left: 10px;
+}
+//
+.ui-cursor {
+  // color:$brand-primary;
+  cursor: pointer;
+}

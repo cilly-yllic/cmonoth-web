@@ -1,0 +1,96 @@
+// 全体のレイアウト系
+*:focus {
+  outline: none !important;
+}
+* {
+  font-family: "Avenir Next", Roboto, -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic,'Yu Gothic', Verdana, Meiryo, sans-serif;
+}
+body {
+  height: 100vh;
+  background-color: $gray-lightest;
+  background: radial-gradient(729.03px at 100% 100%, #D6DEE2 0%, #F3F5F6 100%), #F3F5F6;
+}
+.ui-layout-body {
+  box-sizing: border-box;
+  display: flex;
+  height: 100vh;
+  min-width: 1024px;
+}
+.ui-layout-side {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  height: 100%;
+  min-height: 600px;
+  left: 0;
+  z-index: 300;
+}
+.ui-layout-navigation {
+  overflow-y: scroll;
+  width: 80px;
+  height: 100%;
+  font-size: .7rem;
+  color: #5a5b65;
+  background-color: #35363D;
+  transform: translateX(0px);
+  -webkit-transition: width .2s,-webkit-transform .2s;
+  transition: width .2s,-webkit-transform .2s;
+  transition: width .2s,transform .2s;
+  transition: width .2s,transform .2s,-webkit-transform .2s;
+  box-shadow: 3px 0 6px rgba(0,0,0,.24) inset;
+  .fixed-bottom {
+    color: #b6b9bb;
+  }
+  .ui-link-account {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+  }
+  .nav-item {
+    position:relative;
+    .material-icons {
+      font-size: 36px;
+    }
+    .mat-icon {
+      width: 36px;
+      height: 36px;
+    }
+  }
+  .nav-item .nav-link:hover {
+    color: $white;
+  }
+  .nav-item .nav-link.active {
+    background-color: #202127;
+    color: #fff;
+    &:after {
+      position: absolute;
+      content: "";
+      display: block;
+      border: .5rem solid transparent;
+      border-right: 10px solid $gray-lightest;
+      top: 1rem;
+      right: 0;
+    }
+  }
+}
+
+.ui-layout-main {
+  min-width: 1120px;
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+}
+.ui-main-inner {
+  padding: $paddingMain;
+}
+
+footer {
+  margin: 0 auto;
+}
+
+
+
+

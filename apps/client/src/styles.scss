@@ -1,4 +1,9 @@
-@import "./styles/material";
+@import './styles/variables'; // mixin, includeなど
+@import './styles/icon-fonts.css';
+@import './styles/material';
+@import './styles/utilities';
+@import './styles/styles';
+@import './styles/layout';
 
 /* You can add global styles to this file, and also import other style files */
 

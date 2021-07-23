@@ -1,0 +1,796 @@
+{
+  "layout_side_navigation": {
+    "link": {
+      "private": "private",
+      "dashboard": "TOP",
+      "projects": "PROJECT",
+      "trees": "TREE",
+      "admin": "ADMIN",
+      "setting": "setting",
+      "feedback": "feed Us Back",
+      "help": "help"
+    },
+    "user_menu": {
+      "account_settings": "Account Settings",
+      "sign_out": "Sign Out"
+    }
+  },
+
+  "page_settings": {
+    "header": {
+      "title": "Account Settings"
+    },
+    "nav": {
+      "account": "Account",
+      "emails": "Email",
+      "two_step_authentication": "Two Step Authentication",
+      "sns_oauth": "Social Authentication",
+      "payment_method": "Payment Method",
+      "password": "Password",
+      "files": "Files"
+    }
+  },
+
+  "page_settings_account": {
+    "label": {
+      "avatar": "Avatar",
+      "username": "Username",
+      "fullname": "Name",
+      "user_description": "Bio",
+      "language": "Language",
+      "region": "Time zone"
+    },
+    "error_username": {
+      "exist": "この ユーザー名 は使用できません",
+      "minlength": "4文字以上を設定してください",
+      "pattern": "使える文字形式は <em>英数字・_ or -</em>です"
+    },
+    "error_delete": {
+      "join_org": "あなたは、こちらの組織に入っています。",
+      "owner_org": "あなたは、以下の組織の管理者なので、アカウントを削除することができません。",
+      "owner_org_must": "アカウントを削除するには、他のユーザーに組織管理者権限を渡すか、組織を削除する必要があります。"
+    },
+    "alert": {
+      "update": "Update!"
+    },
+    "action": {
+      "save": "Save changes",
+      "delete": "Deactivate your account"
+    }
+  },
+
+  "page_settings_emails": {
+    "label": {
+      "add": "Add email address",
+      "primary": "Primary email address"
+    },
+    "alert": {
+      "succeeded": "success!!"
+    },
+    "action": {
+      "add": "Add"
+    }
+  },
+
+  "page_settings_twofactor": {
+    "app": {
+      "way": "バーコードを認証アプリで読み取ってください。",
+      "desc": "認証アプリ経由でログインコードを受け取ります。"
+    },
+    "status": {
+      "off": "二段階認証は使用していません",
+      "on": "二段階認証は設定されています"
+    },
+    "action": {
+      "generate": "二段階認証を設定するためのバーコードを生成する",
+      "regenerate": "再生成する",
+      "off": "オフにする"
+    }
+  },
+
+  "/* common用 */": [
+    "================================================================================"
+  ],
+  "common": {
+    "page_name": {
+      "dialog": "Dialog",
+      "hello": "Hello, {{username}}!",
+      "sign_in": "Sign In",
+      "sign_up": "Sign Up",
+      "new_project": "New Project",
+      "new_tree": "New Tree",
+      "new_task": "New Task",
+      "delete_project": "Delete Project",
+      "delete_tree": "Delete Tree",
+      "delete_task": "Delete Task",
+      "delete_task_group": "Delete Task Group",
+      "account_settings": "Account Settings",
+      "feedback": "Feedback",
+      "delete_file": "Delete Upload File"
+    },
+    "action": {
+      "create_project": "Create New Project",
+      "delete_project": "Delete Project",
+      "create_tree": "Create New Tree",
+      "reset": "Reset"
+    },
+    "button": {
+      "yes": "Yes",
+      "no": "No",
+      "edit": "Edit",
+      "cancel": "Cancel",
+      "update": "Update",
+      "today": "Today",
+      "clear": "Clear",
+      "deadline": "Deadline",
+      "send": "Send",
+      "create_org": "Create New Org",
+      "create_task": "Create New Task",
+      "delete_task": "Delete Task",
+      "preview": "Preview",
+      "remove": "Remove",
+      "remove_all": "Remove All",
+      "assign": "Assign",
+      "sign_in": "Sign In",
+      "sign_out": "Sign Out",
+      "sign_up": "Sign Up",
+      "landing": "Landing Page",
+      "forget_password": "If you forget your password",
+      "github": "Github Sign In",
+      "facebook": "Facebook Sign In",
+      "google": "Google Sign In",
+      "add": "Add",
+      "delete": "Delete",
+      "invite": "Send Invite Mail",
+      "join_org": "Join Org",
+      "generate": "Generate",
+      "regenerate": "Regenerate",
+      "reset": "Reset"
+    },
+    "file": {
+      "name": "Name",
+      "size": "Size",
+      "progress": "Progress",
+      "actions": "Actions",
+      "preview": "Preview"
+    },
+    "link": {
+      "org_member_status": {
+        "inviting": "inviting",
+        "rejected": "rejected",
+        "activated": "Full member",
+        "deactivated": "deactivated"
+      },
+      "top": "Top",
+      "admin": "Admin Management Page",
+      "dashboard": "Dashboard",
+      "account": "Account",
+      "files": "Files",
+      "profile": "Account",
+      "emails": "Email",
+      "projects": "Projects",
+      "password": "Password",
+      "project": "Project",
+      "trees": "tree list",
+      "setting": "Setting",
+      "setting_org": "Setting Org",
+      "two_step_authentication": "Two Step Authentication",
+      "sns_oauth": "Social Authentication",
+      "payment_method": "Payment Method",
+      "email": "Mail",
+      "access_control": "Access Control",
+      "notification_settings": "Notification Setting",
+      "users": "Member",
+      "orgs": "Orgs",
+      "org": "Org",
+      "invite": "Invite",
+      "create_project": "Create New Project",
+      "create_tree": "Create New Tree",
+      "create_task": "Create New Task",
+      "create_org": "Create New Org",
+      "service": "Service",
+      "price": "Price",
+      "sign_in": "Sign In"
+    },
+
+    "input": {
+      "project_name": "Project Name",
+      "tree_name": "Tree Name",
+      "task_name": "Task Name",
+      "email": "Email",
+      "username": "Username",
+      "feedback": "Message",
+      "dialog": ""
+    },
+
+    "placeholder": {
+      "may_put_goal": "目標とか書くといいかも",
+      "dialog": ""
+    }
+  },
+
+  "payment": {
+    "plans": {
+      "gold": "Gold Plan",
+      "silver": "Silver Plan",
+      "free": "Free Plan"
+    }
+  },
+
+  "task": {
+    "not_yet": "Not Yet",
+    "doing": "Doing",
+    "waiting": "Waiting",
+    "done": "Done"
+  },
+
+  "org": {
+    "name": "Org Name",
+    "subdomain": "Subdomain",
+    "user_statuses": {
+      "inviting": "Inviting",
+      "rejected": "Rejected",
+      "activated": "Activated",
+      "deactivated": "Deactivated"
+    }
+  },
+
+  "user": {
+    "email": {
+      "statuses": {
+        "checking": "Checking",
+        "authenticated": "Authenticated",
+        "rejected": "Rejected"
+      }
+    }
+  },
+
+  "activity": {
+    "type": {
+      "create_project": "Project:{{project_name}} Created",
+      "create_tree": "Tree:{{tree_name}} Created",
+      "create_task": "Task:{{task_name}} Created"
+    }
+  },
+  "notification": {
+    "type": {
+
+      "project_post": "Project:{{project_name}} Created",
+      "project_put_name": "Project:{{project_name}}:change name:{{old}} -> {{new}}",
+      "project_put_slack_url": "Project:{{project_name}}:change slack URL",
+      "project_put_assign": "Project:{{project_name}}:assign",
+      "project_put_open": "Project:{{project_name}}:change open",
+      "project_put_restriction": "Project:{{project_name}}:change restriction",
+      "project_delete": "Project:{{project_name}}:delete",
+
+      "tree_post": "Project:{{project_name}}:Tree:{{tree_name}} Created",
+      "tree_put_name":  "Project:{{project_name}}:Tree:{{tree_name}}:change tree name:{{old}} -> {{new}}",
+      "tree_put_open":  "Project:{{project_name}}:Tree:{{tree_name}}:change open",
+      "tree_delete":  "Project:{{project_name}}:Tree:{{tree_name}}:delete",
+
+      "task_post": "Project:{{project_name}}:Tree:{{tree_name}}:Task:{{task_name}} Created",
+      "task_put_name": "Project:{{project_name}}:Tree:{{tree_name}}:Task:{{task_name}}:change task name:{{old}} -> {{new}}",
+      "task_put_assign": "Project:{{project_name}}:Tree:{{tree_name}}:Task:{{task_name}}:assign",
+      "task_put_relation": "Project:{{project_name}}:Tree:{{tree_name}}:Task:{{task_name}}:chnage relation",
+      "task_put_description": "Project:{{project_name}}:Tree:{{tree_name}}:Task:{{task_name}}:change description",
+      "task_put_deadline": "Project:{{project_name}}:Tree:{{tree_name}}:Task:{{task_name}}:change deadline",
+      "task_put_comment": "Project:{{project_name}}:Tree:{{tree_name}}:Task:{{task_name}}:add comment",
+      "task_put_status": "Project:{{project_name}}:Tree:{{tree_name}}:Task:{{task_name}}:change status",
+      "task_put_open": "Project:{{project_name}}:Tree:{{tree_name}}:Task:{{task_name}}:change open",
+      "task_put_progress": "Project:{{project_name}}:Tree:{{tree_name}}:Task:{{task_name}}:change progress",
+      "task_delete": "Project:{{project_name}}:Tree:{{tree_name}}:Task:{{task_name}}:delete",
+
+      "join_org": "Request to join org:{{org_name}}"
+    }
+  },
+
+
+
+
+
+
+
+  "/*languages*/": [
+    "//+++++++++++++++++++++++++++++//",
+    "//+++++++++ Languages +++++++++//",
+    "//+++++++++++++++++++++++++++++//"
+  ],
+
+  "languages": {
+    "japanese": "Japanese",
+    "english": "English"
+  },
+
+
+
+  "/*regions*/": [
+    "//+++++++++++++++++++++++++++++//",
+    "//++++++++++ Regions ++++++++++//",
+    "//+++++++++++++++++++++++++++++//"
+  ],
+
+  "regions": {
+    "Africa/Banjul": "Africa/Banjul",
+    "Africa/Conakry": "Africa/Conakry",
+    "Africa/Dakar": "Africa/Dakar",
+    "Africa/Freetown": "Africa/Freetown",
+    "Africa/Lome": "Africa/Lome",
+    "Africa/Nouakchott": "Africa/Nouakchott",
+    "Africa/Ouagadougou": "Africa/Ouagadougou",
+    "Africa/Sao_Tome": "Africa/Sao Tome",
+    "Africa/Timbuktu": "Africa/Timbuktu",
+    "Atlantic/St_Helena": "Atlantic/St Helena",
+
+    "Egypt": "Egypt",
+    "Africa/Maseru": "Africa/Maseru",
+    "Africa/Mbabane": "Africa/Mbabane",
+
+    "Africa/Juba": "Africa/Juba",
+
+    "Africa/Bangui": "Africa/Bangui",
+    "Africa/Brazzaville": "Africa/Brazzaville",
+    "Africa/Douala": "Africa/Douala",
+    "Africa/Kinshasa": "Africa/Kinshasa",
+    "Africa/Libreville": "Africa/Libreville",
+    "Africa/Luanda": "Africa/Luanda",
+    "Africa/Malabo": "Africa/Malabo",
+    "Africa/Niamey": "Africa/Niamey",
+    "Africa/Porto-Novo": "Africa/Porto-Novo",
+
+    "Africa/Blantyre": "Africa/Blantyre",
+    "Africa/Bujumbura": "Africa/Bujumbura",
+    "Africa/Gaborone": "Africa/Gaborone",
+    "Africa/Harare": "Africa/Harare",
+    "Africa/Kigali": "Africa/Kigali",
+    "Africa/Lubumbashi": "Africa/Lubumbashi",
+    "Africa/Lusaka": "Africa/Lusaka",
+
+    "Africa/Addis_Ababa": "Africa/Addis Ababa",
+    "Africa/Asmara": "Africa/Asmara",
+    "Africa/Asmera": "Africa/Asmera",
+    "Africa/Dar_es_Salaam": "Africa/Dar es Salaam",
+    "Africa/Djibouti": "Africa/Djibouti",
+    "Africa/Kampala": "Africa/Kampala",
+    "Africa/Mogadishu": "Africa/Mogadishu",
+    "Africa/Antananarivo": "Africa/Antananarivo",
+    "Africa/Comoro": "Africa/Comoro",
+    "Africa/Mayotte": "Africa/Mayotte",
+
+    "Libya": "Libya",
+
+    "America/Atka": "America/Atka",
+    "US/Aleutian": "US/Aleutian",
+
+    "US/Alaska": "US/Alaska",
+
+    "America/Buenos_Aires": "America/Buenos Aires",
+    "America/Argentina/ComodRivadavia": "America/Argentina/ComodRivadavia",
+    "America/Catamarca": "America/Catamarca",
+    "America/Cordoba": "America/Cordoba",
+    "America/Rosario": "America/Rosario",
+    "America/Jujuy": "America/Jujuy",
+    "America/Mendoza": "America/Mendoza",
+
+    "America/Coral_Harbour": "America/Coral Harbour",
+
+    "US/Central": "US/Central",
+
+    "America/Aruba": "America/Aruba",
+    "America/Kralendijk": "America/Kralendijk",
+    "America/Lower_Princes": "America/Lower Princes",
+
+    "America/Shiprock": "America/Shiprock",
+    "Navajo": "Navajo",
+    "US/Mountain": "US/Mountain",
+
+    "US/Michigan": "US/Michigan",
+
+    "Canada/Mountain": "Canada/Mountain",
+
+    "America/Indiana/Indianapolis": "America/Indiana/Indianapolis",
+    "America/Indianapolis": "America/Indianapolis",
+    "US/East-Indiana": "US/East-Indiana",
+
+    "Canada/Atlantic": "Canada/Atlantic",
+
+    "Cuba": "Cuba",
+
+    "America/Knox_IN": "America/Knox IN",
+    "US/Indiana-Starke": "US/Indiana-Starke",
+
+    "Jamaica": "Jamaica",
+
+    "America/Louisville": "America/Louisville",
+
+    "US/Pacific": "US/Pacific",
+    "US/Pacific-New": "US/Pacific-New",
+
+    "Brazil/West": "Brazil/West",
+
+    "Mexico/BajaSur": "Mexico/BajaSur",
+
+    "Mexico/General": "Mexico/General",
+
+    "US/Eastern": "US/Eastern",
+
+    "Brazil/DeNoronha": "Brazil/DeNoronha",
+
+    "America/Cayman": "America/Cayman",
+
+    "US/Arizona": "US/Arizona",
+
+    "America/Anguilla": "America/Anguilla",
+    "America/Antigua": "America/Antigua",
+    "America/Dominica": "America/Dominica",
+    "America/Grenada": "America/Grenada",
+    "America/Guadeloupe": "America/Guadeloupe",
+    "America/Marigot": "America/Marigot",
+    "America/Montserrat": "America/Montserrat",
+    "America/St_Barthelemy": "America/St Barthelemy",
+    "America/St_Kitts": "America/St Kitts",
+    "America/St_Lucia": "America/St Lucia",
+    "America/St_Thomas": "America/St Thomas",
+    "America/St_Vincent": "America/St Vincent",
+    "America/Tortola": "America/Tortola",
+    "America/Virgin": "America/Virgin",
+
+    "Canada/East-Saskatchewan": "Canada/East-Saskatchewan",
+    "Canada/Saskatchewan": "Canada/Saskatchewan",
+
+    "America/Porto_Acre": "America/Porto Acre",
+    "Brazil/Acre": "Brazil/Acre",
+
+    "Chile/Continental": "Chile/Continental",
+
+    "Brazil/East": "Brazil/East",
+
+    "Canada/Newfoundland": "Canada/Newfoundland",
+
+    "America/Ensenada": "America/Ensenada",
+    "America/Santa_Isabel": "America/Santa Isabel",
+    "Mexico/BajaNorte": "Mexico/BajaNorte",
+
+    "America/Montreal": "America/Montreal",
+    "Canada/Eastern": "Canada/Eastern",
+
+    "Canada/Pacific": "Canada/Pacific",
+
+    "Canada/Yukon": "Canada/Yukon",
+
+    "Canada/Central": "Canada/Central",
+
+    "Asia/Ashkhabad": "Asia/Ashkhabad",
+
+    "Asia/Phnom_Penh": "Asia/Phnom Penh",
+    "Asia/Vientiane": "Asia/Vientiane",
+
+    "Asia/Dacca": "Asia/Dacca",
+
+    "Asia/Muscat": "Asia/Muscat",
+
+    "Asia/Saigon": "Asia/Saigon",
+
+    "Hongkong": "Hongkong",
+
+    "Asia/Tel_Aviv": "Asia/Tel Aviv",
+    "Israel": "Israel",
+
+    "Asia/Katmandu": "Asia/Katmandu",
+
+    "Asia/Macao": "Asia/Macao",
+
+    "Asia/Ujung_Pandang": "Asia/Ujung Pandang",
+
+    "Europe/Nicosia": "Europe/Nicosia",
+
+    "Asia/Bahrain": "Asia/Bahrain",
+
+    "Asia/Yangon": "Asia/Yangon",
+
+    "Asia/Aden": "Asia/Aden",
+    "Asia/Kuwait": "Asia/Kuwait",
+
+    "ROK": "ROK",
+
+    "Asia/Chongqing": "Asia/Chongqing",
+    "Asia/Chungking": "Asia/Chungking",
+    "Asia/Harbin": "Asia/Harbin",
+    "PRC": "PRC",
+
+    "Singapore": "Singapore",
+
+    "ROC": "ROC",
+
+    "Iran": "Iran",
+
+    "Asia/Thimbu": "Asia/Thimbu",
+
+    "Japan": "Japan",
+
+    "Asia/Ulan_Bator": "Asia/Ulan Bator",
+
+    "Asia/Kashgar": "Asia/Kashgar",
+
+    "Atlantic/Faeroe": "Atlantic/Faeroe",
+    "Iceland": "Iceland",
+
+    "Australia/South": "Australia/South",
+
+    "Australia/Queensland": "Australia/Queensland",
+
+    "Australia/Yancowinna": "Australia/Yancowinna",
+
+    "Australia/North": "Australia/North",
+
+    "Australia/Tasmania": "Australia/Tasmania",
+
+    "Australia/LHI": "Australia/LHI",
+
+    "Australia/Victoria": "Australia/Victoria",
+
+    "Australia/West": "Australia/West",
+
+    "Australia/ACT": "Australia/ACT",
+    "Australia/Canberra": "Australia/Canberra",
+    "Australia/NSW": "Australia/NSW",
+
+    "Etc/GMT": "Etc/GMT",
+    "Etc/GMT-0": "Etc/GMT-0",
+    "Etc/GMT0": "Etc/GMT0",
+    "Etc/Greenwich": "Etc/Greenwich",
+    "GMT": "GMT",
+    "GMT+0": "GMT+0",
+    "GMT-0": "GMT-0",
+    "GMT0": "GMT0",
+    "Greenwich": "Greenwich",
+
+    "UCT": "UCT",
+    "Etc/Universal": "Etc/Universal",
+    "Etc/Zulu": "Etc/Zulu",
+    "UTC": "UTC",
+    "Universal": "Universal",
+    "Zulu": "Zulu",
+
+    "Europe/Ljubljana": "Europe/Ljubljana",
+    "Europe/Podgorica": "Europe/Podgorica",
+    "Europe/Sarajevo": "Europe/Sarajevo",
+    "Europe/Skopje": "Europe/Skopje",
+    "Europe/Zagreb": "Europe/Zagreb",
+
+    "Europe/Tiraspol": "Europe/Tiraspol",
+
+    "Eire": "Eire",
+
+    "Europe/Mariehamn": "Europe/Mariehamn",
+
+    "Asia/Istanbul": "Asia/Istanbul",
+    "Turkey": "Turkey",
+
+    "Portugal": "Portugal",
+    "Europe/Belfast": "Europe/Belfast",
+    "Europe/Guernsey": "Europe/Guernsey",
+    "Europe/Isle_of_Man": "Europe/Isle of Man",
+    "Europe/Jersey": "Europe/Jersey",
+    "GB": "GB",
+    "GB-Eire": "GB-Eire",
+
+    "W-SU": "W-SU",
+
+    "Arctic/Longyearbyen": "Arctic/Longyearbyen",
+    "Atlantic/Jan_Mayen": "Atlantic/Jan Mayen",
+
+    "Europe/Bratislava": "Europe/Bratislava",
+
+    "Europe/San_Marino": "Europe/San Marino",
+    "Europe/Vatican": "Europe/Vatican",
+
+    "Poland": "Poland",
+
+    "Europe/Busingen": "Europe/Busingen",
+    "Europe/Vaduz": "Europe/Vaduz",
+
+    "Antarctica/McMurdo": "Antarctica/McMurdo",
+    "Antarctica/South_Pole": "Antarctica/South Pole",
+    "NZ": "NZ",
+
+    "NZ-CHAT": "NZ-CHAT",
+
+    "Pacific/Truk": "Pacific/Truk",
+    "Pacific/Yap": "Pacific/Yap",
+
+    "Chile/EasterIsland": "Chile/EasterIsland",
+
+    "Pacific/Saipan": "Pacific/Saipan",
+
+    "Pacific/Johnston": "Pacific/Johnston",
+    "US/Hawaii": "US/Hawaii",
+
+    "Kwajalein": "Kwajalein",
+
+    "Pacific/Midway": "Pacific/Midway",
+    "Pacific/Samoa": "Pacific/Samoa",
+    "US/Samoa": "US/Samoa",
+
+    "Pacific/Ponape": "Pacific/Ponape"
+  },
+
+  "/*exchanges*/": [
+    "//+++++++++++++++++++++++++++++//",
+    "//+++++++++ Exchanges +++++++++//",
+    "//+++++++++++++++++++++++++++++//"
+  ],
+
+  "exchanges": {
+    "AED": "United Arab Emirates Dirham (AED)",
+    "AFN": "Afghan Afghani (AFN)",
+    "ALL": "Albanian Lek (ALL)",
+    "AMD": "Armenian Dram (AMD)",
+    "ANG": "Netherlands Antillean Guilder (ANG)",
+    "AOA": "Angolan Kwanza (AOA)",
+    "ARS": "Argentine Peso (ARS)",
+    "AUD": "Australian Dollar (AU$)",
+    "AWG": "Aruban Florin (AWG)",
+    "AZN": "Azerbaijani Manat (AZN)",
+    "BAM": "Bosnia-Herzegovina Convertible Mark (BAM)",
+    "BBD": "Barbadian Dollar (BBD)",
+    "BDT": "Bangladeshi Taka (BDT)",
+    "BGN": "Bulgarian Lev (BGN)",
+    "BHD": "Bahraini Dinar (BHD)",
+    "BIF": "Burundian Franc (BIF)",
+    "BMD": "Bermudan Dollar (BMD)",
+    "BND": "Brunei Dollar (BND)",
+    "BOB": "Bolivian Boliviano (BOB)",
+    "BRL": "Brazilian Real (B$)",
+    "BSD": "Bahamian Dollar (BSD)",
+    "BTC": "Bitcoin (&#3647;)",
+    "BTN": "Bhutanese Ngultrum (BTN)",
+    "BWP": "Botswanan Pula (BWP)",
+    "BYN": "Belarusian Ruble (BYN)",
+    "BYR": "Belarusian Ruble (2000&#8211;2016)",
+    "BZD": "Belize Dollar (BZD)",
+    "CAD": "Canadian Dollar (CA$)",
+    "CDF": "Congolese Franc (CDF)",
+    "CHF": "Swiss Franc (CHF)",
+    "CLF": "Chilean Unit of Account (UF) (CLF)",
+    "CLP": "Chilean Peso (CLP)",
+    "CNH": "CNH (CNH)",
+    "CNY": "Chinese Yuan (CNY)",
+    "COP": "Colombian Peso (COP)",
+    "CRC": "Costa Rican Colón (CRC)",
+    "CUP": "Cuban Peso (CUP)",
+    "CVE": "Cape Verdean Escudo (CVE)",
+    "CZK": "Czech Koruna (CZK)",
+    "DEM": "German Mark (DEM)",
+    "DJF": "Djiboutian Franc (DJF)",
+    "DKK": "Danish Krone (DKK)",
+    "DOP": "Dominican Peso (DOP)",
+    "DZD": "Algerian Dinar (DZD)",
+    "EGP": "Egyptian Pound (EGP)",
+    "ERN": "Eritrean Nakfa (ERN)",
+    "ETB": "Ethiopian Birr (ETB)",
+    "EUR": "Euro (&#8364;)",
+    "FIM": "Finnish Markka (FIM)",
+    "FJD": "Fijian Dollar (FJD)",
+    "FKP": "Falkland Islands Pound (FKP)",
+    "FRF": "French Franc (FRF)",
+    "GBP": "British Pound (GBP)",
+    "GEL": "Georgian Lari (GEL)",
+    "GHS": "Ghanaian Cedi (GHS)",
+    "GIP": "Gibraltar Pound (GIP)",
+    "GMD": "Gambian Dalasi (GMD)",
+    "GNF": "Guinean Franc (GNF)",
+    "GTQ": "Guatemalan Quetzal (GTQ)",
+    "GYD": "Guyanaese Dollar (GYD)",
+    "HKD": "Hong Kong Dollar (HK$)",
+    "HNL": "Honduran Lempira (HNL)",
+    "HRK": "Croatian Kuna (HRK)",
+    "HTG": "Haitian Gourde (HTG)",
+    "HUF": "Hungarian Forint (HUF)",
+    "IDR": "Indonesian Rupiah (IDR)",
+    "IEP": "Irish Pound (IEP)",
+    "ILS": "Israeli New Shekel (&#8362;)",
+    "INR": "Indian Rupee (&#8377;)",
+    "IQD": "Iraqi Dinar (IQD)",
+    "IRR": "Iranian Rial (IRR)",
+    "ISK": "Icelandic Króna (ISK)",
+    "ITL": "Italian Lira (ITL)",
+    "JMD": "Jamaican Dollar (JMD)",
+    "JOD": "Jordanian Dinar (JOD)",
+    "JPY": "Japanese Yen (¥)",
+    "KES": "Kenyan Shilling (KES)",
+    "KGS": "Kyrgystani Som (KGS)",
+    "KHR": "Cambodian Riel (KHR)",
+    "KMF": "Comorian Franc (KMF)",
+    "KPW": "North Korean Won (KPW)",
+    "KRW": "South Korean Won (&#8361;)",
+    "KWD": "Kuwaiti Dinar (KWD)",
+    "KYD": "Cayman Islands Dollar (KYD)",
+    "KZT": "Kazakhstani Tenge (KZT)",
+    "LAK": "Laotian Kip (LAK)",
+    "LBP": "Lebanese Pound (LBP)",
+    "LKR": "Sri Lankan Rupee (LKR)",
+    "LRD": "Liberian Dollar (LRD)",
+    "LSL": "Lesotho Loti (LSL)",
+    "LTL": "Lithuanian Litas (LTL)",
+    "LVL": "Latvian Lats (LVL)",
+    "LYD": "Libyan Dinar (LYD)",
+    "MAD": "Moroccan Dirham (MAD)",
+    "MDL": "Moldovan Leu (MDL)",
+    "MGA": "Malagasy Ariary (MGA)",
+    "MKD": "Macedonian Denar (MKD)",
+    "MMK": "Myanmar Kyat (MMK)",
+    "MNT": "Mongolian Tugrik (MNT)",
+    "MOP": "Macanese Pataca (MOP)",
+    "MRO": "Mauritanian Ouguiya (MRO)",
+    "MUR": "Mauritian Rupee (MUR)",
+    "MVR": "Maldivian Rufiyaa (MVR)",
+    "MWK": "Malawian Kwacha (MWK)",
+    "MXN": "Mexican Peso (MX$)",
+    "MYR": "Malaysian Ringgit (MYR)",
+    "MZN": "Mozambican Metical (MZN)",
+    "NAD": "Namibian Dollar (NAD)",
+    "NGN": "Nigerian Naira (NGN)",
+    "NIO": "Nicaraguan Córdoba (NIO)",
+    "NOK": "Norwegian Krone (NOK)",
+    "NPR": "Nepalese Rupee (NPR)",
+    "NZD": "New Zealand Dollar (NZ$)",
+    "OMR": "Omani Rial (OMR)",
+    "PAB": "Panamanian Balboa (PAB)",
+    "PEN": "Peruvian Sol (PEN)",
+    "PGK": "Papua New Guinean Kina (PGK)",
+    "PHP": "Philippine Peso (PHP)",
+    "PKG": "PKG (PKG)",
+    "PKR": "Pakistani Rupee (PKR)",
+    "PLN": "Polish Zloty (PLN)",
+    "PYG": "Paraguayan Guarani (PYG)",
+    "QAR": "Qatari Rial (QAR)",
+    "RON": "Romanian Leu (RON)",
+    "RSD": "Serbian Dinar (RSD)",
+    "RUB": "Russian Ruble (RUB)",
+    "RWF": "Rwandan Franc (RWF)",
+    "SAR": "Saudi Riyal (SAR)",
+    "SBD": "Solomon Islands Dollar (SBD)",
+    "SCR": "Seychellois Rupee (SCR)",
+    "SDG": "Sudanese Pound (SDG)",
+    "SEK": "Swedish Krona (SEK)",
+    "SGD": "Singapore Dollar (SGD)",
+    "SHP": "St. Helena Pound (SHP)",
+    "SKK": "Slovak Koruna (SKK)",
+    "SLL": "Sierra Leonean Leone (SLL)",
+    "SOS": "Somali Shilling (SOS)",
+    "SRD": "Surinamese Dollar (SRD)",
+    "STD": "São Tomé e Príncipe Dobra (STD)",
+    "SVC": "Salvadoran Colón (SVC)",
+    "SYP": "Syrian Pound (SYP)",
+    "SZL": "Swazi Lilangeni (SZL)",
+    "THB": "Thai Baht (THB)",
+    "TJS": "Tajikistani Somoni (TJS)",
+    "TMT": "Turkmenistani Manat (TMT)",
+    "TND": "Tunisian Dinar (TND)",
+    "TOP": "Tongan paʻanga (TOP)",
+    "TRY": "Turkish Lira (TRY)",
+    "TTD": "Trinidad and Tobago Dollar (TTD)",
+    "TWD": "New Taiwan Dollar (NT$)",
+    "TZS": "Tanzanian Shilling (TZS)",
+    "UAH": "Ukrainian Hryvnia (UAH)",
+    "UGX": "Ugandan Shilling (UGX)",
+    "USD": "US Dollar ($)",
+    "UYU": "Uruguayan Peso (UYU)",
+    "UZS": "Uzbekistani Som (UZS)",
+    "VEF": "Venezuelan Bolívar (VEF)",
+    "VND": "Vietnamese Dong (&#8363;)",
+    "VUV": "Vanuatu Vatu (VUV)",
+    "WST": "Samoan Tala (WST)",
+    "XAF": "Central African CFA Franc (FCFA)",
+    "XCD": "East Caribbean Dollar (EC$)",
+    "XDR": "Special Drawing Rights (XDR)",
+    "XOF": "West African CFA Franc (CFA)",
+    "XPF": "CFP Franc (CFPF)",
+    "YER": "Yemeni Rial (YER)",
+    "ZAR": "South African Rand (ZAR)",
+    "ZMK": "Zambian Kwacha (1968&#8211;2012) (ZMK)",
+    "ZMW": "Zambian Kwacha (ZMW)",
+    "ZWL": "Zimbabwean Dollar (2009) (ZWL)"
+  }
+
+}
