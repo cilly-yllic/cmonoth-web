@@ -1,39 +1,35 @@
 @font-face {
-    font-family: "icon-fonts";
-    src: url("/assets/icon-fonts/icon-fonts.eot?4fb55c28f42e1b1ad93eab783951a6a8?#iefix") format("embedded-opentype"),
-url("/assets/icon-fonts/icon-fonts.woff2?4fb55c28f42e1b1ad93eab783951a6a8") format("woff2"),
-url("/assets/icon-fonts/icon-fonts.woff?4fb55c28f42e1b1ad93eab783951a6a8") format("woff"),
-url("/assets/icon-fonts/icon-fonts.ttf?4fb55c28f42e1b1ad93eab783951a6a8") format("truetype"),
-url("/assets/icon-fonts/icon-fonts.svg?4fb55c28f42e1b1ad93eab783951a6a8#icon-fonts") format("svg");
-}
-
-i {
-    line-height: 1;
+  font-family: "icon-fonts";
+  src: url("../../assets/icon-fonts/icon-fonts.eot?d5f4e38f8c5682b326df599b3bf46e41?#iefix") format("embedded-opentype"),
+  url("../../assets/icon-fonts/icon-fonts.woff2?d5f4e38f8c5682b326df599b3bf46e41") format("woff2"),
+  url("../../assets/icon-fonts/icon-fonts.woff?d5f4e38f8c5682b326df599b3bf46e41") format("woff"),
+  url("../../assets/icon-fonts/icon-fonts.ttf?d5f4e38f8c5682b326df599b3bf46e41") format("truetype"),
+  url("../../assets/icon-fonts/icon-fonts.svg?d5f4e38f8c5682b326df599b3bf46e41#icon-fonts") format("svg");
 }
 
 i[class^="icon-font-"]:before, i[class*=" icon-font-"]:before {
-    font-family: icon-fonts !important;
-    font-style: normal;
-    font-weight: normal !important;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-family: icon-fonts !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .icon-font-leaf:before {
-    content: "\f101";
+  content: "\f101";
 }
 .icon-font-project:before {
-    content: "\f102";
+  content: "\f102";
 }
 .icon-font-task-group:before {
-    content: "\f103";
+  content: "\f103";
 }
 .icon-font-task:before {
-    content: "\f104";
+  content: "\f104";
 }
 .icon-font-tree:before {
-    content: "\f105";
+  content: "\f105";
 }

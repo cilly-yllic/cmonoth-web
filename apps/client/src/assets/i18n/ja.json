@@ -88,9 +88,7 @@
     }
   },
 
-  "/* common用 */": [
-    "================================================================================"
-  ],
+  "/* common用 */": ["================================================================================"],
   "common": {
     "page_name": {
       "dialog": "ダイアログ",
@@ -124,6 +122,7 @@
       "clear": "クリア",
       "deadline": "期限",
       "send": "送信",
+      "create_project": "プロジェクト作成",
       "create_org": "組織作成",
       "create_task": "タスク作成",
       "delete_task": "タスク削除",
@@ -259,7 +258,6 @@
   },
   "notification": {
     "type": {
-
       "project_post": "プロジェクト:{{project_name}}作成",
       "project_put_name": "プロジェクト:{{project_name}}:プロジェクト名変更:{{old}} -> {{new}}",
       "project_put_slack_url": "プロジェクト:{{project_name}}:スラックURL変更",
@@ -269,9 +267,9 @@
       "project_delete": "プロジェクト:{{project_name}}:削除",
 
       "tree_post": "プロジェクト:{{project_name}}:ツリー:{{tree_name}}作成",
-      "tree_put_name":  "プロジェクト:{{project_name}}:ツリー:{{tree_name}}:ツリー名変更:{{old}} -> {{new}}",
-      "tree_put_open":  "プロジェクト:{{project_name}}:ツリー:{{tree_name}}:OPEN変更",
-      "tree_delete":  "プロジェクト:{{project_name}}:ツリー:{{tree_name}}:削除",
+      "tree_put_name": "プロジェクト:{{project_name}}:ツリー:{{tree_name}}:ツリー名変更:{{old}} -> {{new}}",
+      "tree_put_open": "プロジェクト:{{project_name}}:ツリー:{{tree_name}}:OPEN変更",
+      "tree_delete": "プロジェクト:{{project_name}}:ツリー:{{tree_name}}:削除",
 
       "task_post": "プロジェクト:{{project_name}}:ツリー:{{tree_name}}:タスク:{{task_name}}作成",
       "task_put_name": "プロジェクト:{{project_name}}:ツリー:{{tree_name}}:タスク:{{task_name}}:タスク名変更:{{old}} -> {{new}}",
@@ -289,30 +287,14 @@
     }
   },
 
-
-
-
-
-
-
-
-  "/*languages*/": [
-    "//+++++++++++++++++++++++++++++//",
-    "//+++++++++ Languages +++++++++//",
-    "//+++++++++++++++++++++++++++++//"
-  ],
+  "/*languages*/": ["//+++++++++++++++++++++++++++++//", "//+++++++++ Languages +++++++++//", "//+++++++++++++++++++++++++++++//"],
 
   "languages": {
     "japanese": "日本語",
     "english": "英語"
   },
 
-
-  "/*regions*/": [
-    "//+++++++++++++++++++++++++++++//",
-    "//++++++++++ Regions ++++++++++//",
-    "//+++++++++++++++++++++++++++++//"
-  ],
+  "/*regions*/": ["//+++++++++++++++++++++++++++++//", "//++++++++++ Regions ++++++++++//", "//+++++++++++++++++++++++++++++//"],
 
   "regions": {
     "Africa/Banjul": "アフリカ/バンジュル",
@@ -619,11 +601,7 @@
     "Pacific/Ponape": "太平洋/ポナペ"
   },
 
-  "/*exchanges*/": [
-    "//+++++++++++++++++++++++++++++//",
-    "//+++++++++ Exchanges +++++++++//",
-    "//+++++++++++++++++++++++++++++//"
-  ],
+  "/*exchanges*/": ["//+++++++++++++++++++++++++++++//", "//+++++++++ Exchanges +++++++++//", "//+++++++++++++++++++++++++++++//"],
 
   "exchanges": {
     "AED": "United Arab Emirates Dirham (AED)",
@@ -797,5 +775,4 @@
     "ZMW": "Zambian Kwacha (ZMW)",
     "ZWL": "Zimbabwean Dollar (2009) (ZWL)"
   }
-
 }
