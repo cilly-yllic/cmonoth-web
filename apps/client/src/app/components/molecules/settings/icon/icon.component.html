@@ -1,0 +1,19 @@
+<span class="ui-cursor" *ngIf="user$ | async as user" [matMenuTriggerFor]="menu">
+  <div
+    *ngIf="path$ | async as path"
+    class="ui-area-avatar mt-0 mb-1 mx-auto"
+    [style.background-image]="path"
+    matTooltip="setting"
+    matTooltipPosition="right"
+  ></div>
+  {{ user?.displayName }}
+</span>
+<mat-menu #menu="matMenu">
+  <button type="button" class="dropdown-item" (click)="onNavigate('settings/account')">
+    アカウント設定
+  </button>
+  <div class="divider dropdown-divider"></div>
+  <button type="button" class="dropdown-item ui-cursor" (click)="onSignOut()">
+    サインアウト
+  </button>
+</mat-menu>

@@ -1,0 +1,7 @@
+<ng-container *ngIf="data$ | async as d">
+  <ng-container [ngSwitch]="d.mode">
+    <ng-container *ngSwitchCase="'signIn'">
+      <app-o-auth-init-password-and-username [email]="d.email"></app-o-auth-init-password-and-username>
+    </ng-container>
+  </ng-container>
+</ng-container>

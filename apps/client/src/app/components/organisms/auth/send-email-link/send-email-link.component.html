@@ -1,0 +1,24 @@
+<div *ngIf="succeeded; else formTemplate">
+  <div class="alert alert-success">Sent Interim Mail!</div>
+</div>
+
+<ng-template #formTemplate>
+  <form [formGroup]="form" (ngSubmit)="send()" class="form-inline">
+    <div class="mx-auto">
+      <label class="sr-only">Email</label>
+      <div *ngIf="email.touched && email.errors?.email" class="alert alert-danger">
+        <p class="text-danger">Email形式が間違っています。</p>
+      </div>
+      <div *ngIf="isGuest$ | async; else signedInTemplate">
+        <input type="email" name="Email" [formControl]="email" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="mail@domain.com" />
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="sending || form.invalid">サインアップ</button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #signedInTemplate>
+  サインインしています
+</ng-template>
+
+<app-a-spinner [spinning]="sending"></app-a-spinner>

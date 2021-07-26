@@ -1,0 +1,9 @@
+<mat-spinner *ngIf="spinning && !diameter"></mat-spinner>
+<!--
+  もしもviewのほうで
+  <app-a-spinner [spinning]="!_name || updating" [diameter]="40"></app-a-spinner>
+  などと、diameterを指定すると、以下が表示される。
+  diameterはサイズである。
+  ぐるぐるのサイズを変えたい場合は、呼び出してるところで[diameter]="40"などと指定する
+ -->
+<mat-spinner *ngIf="spinning && diameter" [diameter]="diameter"></mat-spinner>

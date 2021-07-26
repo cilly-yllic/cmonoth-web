@@ -1,9 +1,27 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+const firebaseConfig = {
+  apiKey: 'AIzaSyBwgeDpxoC4QmItME7BbieQBoASiB12pDg',
+  authDomain: 'cmonoth-fire-dev.firebaseapp.com',
+  databaseURL: 'https://cmonoth-fire-dev.firebaseio.com',
+  projectId: 'cmonoth-fire-dev',
+  storageBucket: 'dev-cmonoth',
+  messagingSenderId: '370702326672',
+  appId: '1:370702326672:web:9437bc14a18ef7b10ab115',
+  measurementId: 'G-BWPBB165YS',
+}
 
 export const environment = {
+  envName: 'local',
   production: false,
+  firebaseConfig,
+  DATABASE_VERSION: 1,
+  debug: {
+    emulator: false,
+    storage: false,
+    analytics: true,
+  },
 };
 
 /*

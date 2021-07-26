@@ -1,0 +1,12 @@
+<ng-container [ngSwitch]="type">
+  <ng-container *ngSwitchCase="'a'">
+    <a (click)="onClick($event)" href="#" [style]="style">
+      <ng-content select="[a]"></ng-content>
+    </a>
+  </ng-container>
+  <ng-container *ngSwitchCase="'button'">
+    <button type="button" (click)="onClick($event)" [class]="class" [style]="style">
+      <ng-content select="[button]"></ng-content>
+    </button>
+  </ng-container>
+</ng-container>

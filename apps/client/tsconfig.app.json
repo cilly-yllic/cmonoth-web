@@ -1,6 +1,31 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "~env": ["src/environments/environment"],
+      "~utils/*": ["src/app/utils/*"],
+      "~configs": ["src/app/configs/index.ts"],
+      "~configs/*": ["src/app/configs/*"],
+
+      "~validate": ["src/app/validate.ts"],
+
+      "~core/*": ["src/app/_core/*"],
+      "~services/*": ["src/app/services/*"],
+      "~types/*": ["src/app/types/*"],
+
+      "~roots/*": ["src/app/roots/*"],
+      "~pages/*": ["src/app/pages/*"],
+      "~layouts/*": ["src/app/layouts/*"],
+      "~animations/*": ["src/app/animations/*"],
+      "~modules/*": ["src/app/modules/*"],
+      "~dialogs/*": ["src/app/dialogs/*"],
+      "~extends/*": ["src/app/extends/*"],
+
+      "~organisms/*": ["src/app/components/organisms/*"],
+      "~molecules/*": ["src/app/components/molecules/*"],
+      "~atoms/*": ["src/app/components/atoms/*"]
+    },
     "outDir": "../../dist/out-tsc",
     "types": []
   },
