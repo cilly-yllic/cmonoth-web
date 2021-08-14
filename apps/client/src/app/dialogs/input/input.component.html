@@ -1,0 +1,26 @@
+<h2 mat-dialog-title class="ui-dialog-header">{{title}}</h2>
+
+<form #InputForm="ngForm" (ngSubmit)="onSubmit()" class="ui-dialog-form">
+  <mat-dialog-content>
+    <mat-form-field class="w-100">
+      <label>{{label}}</label>
+      <input
+        matInput
+        type="text"
+        name="InputString"
+        [(ngModel)]="inputString"
+        [required]="true"
+        [placeholder]="placeholder"
+      />
+    </mat-form-field>
+    <app-a-spinner [spinning]="updating"></app-a-spinner>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button type="button" mat-dialog-close mat-button>
+      <span aria-hidden="true">Cancel</span>
+    </button>
+    <button mat-button type="submit" color="primary" [disabled]="InputForm.form.invalid">
+      {{button}}
+    </button>
+  </mat-dialog-actions>
+</form>

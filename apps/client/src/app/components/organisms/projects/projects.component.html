@@ -1,0 +1,10 @@
+<mat-tab-group (selectedTabChange)="onSelectIsOpen($event)">
+  <mat-tab label="Open" [attr.data-isOpen]="tabs.open"> </mat-tab>
+  <mat-tab label="Close" [attr.data-isOpen]="tabs.close"> </mat-tab>
+</mat-tab-group>
+
+<ng-container *ngIf="projects$ | async as projects">
+  <app-m-projects [projects]="projects[isOpen]"></app-m-projects>
+</ng-container>
+
+<app-a-spinner [spinning]="loading"></app-a-spinner>

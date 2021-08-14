@@ -1,0 +1,12 @@
+<div class="d-flex align-items-center">
+  <div class="ui-area-avatar mr-2" [style.background-image]="preview || path"></div>
+  <!--現在の登録状況に戻す-->
+  <button *ngIf="changed" mat-stroked-button type="button" (click)="onUndo($event)" matTooltip="もとに戻す">
+    <mat-icon>undo</mat-icon>
+  </button>
+  <!--画像登録をやめるボタン-->
+  <button *ngIf="clearable" mat-stroked-button type="button" (click)="onClear($event)" matTooltip="clear">いまの画像を削除</button>
+</div>
+<div class="mt-3">
+  <app-a-uploader [previewType]="'style'" (changed)="onChanged($event)"></app-a-uploader>
+</div>

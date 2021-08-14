@@ -1,39 +1,33 @@
-<app-m-org-change></app-m-org-change>
-<ul class="nav flex-column">
-  <li class="nav-item text-center">
-    <div class="nav-link ui-cursor" routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-      <mat-icon>home</mat-icon><br />
-      TOP
-    </div>
-  </li>
-  <li class="nav-item text-center">
-    <div class="nav-link ui-cursor" routerLink="./projects" routerLinkActive="active" [ngClass]="{ active: isProject }">
-      <mat-icon>folder</mat-icon><br />
-      プロジェクト
-    </div>
-  </li>
-  <li class="nav-item text-center">
-    <div class="nav-link ui-cursor" routerLink="./trees" routerLinkActive="active" [ngClass]="{ active: isTree }">
-      <mat-icon>check_circle</mat-icon><br />
-      TREE
-    </div>
-  </li>
-  <li *ngIf="user$ | async as user" class="nav-item text-center">
-    <div *ngIf="user?.is_admin" class="nav-link ui-cursor" routerLink="/admin/guideline" routerLinkActive="active">
-      <mat-icon>code</mat-icon><br />
-      DEV
-    </div>
-  </li>
-</ul>
-
-<div class="fixed-bottom text-center">
-  <div class="mt-3">
+<mat-list fxLayout="column" fxFill>
+  <mat-list-item>
+    <app-m-org-change></app-m-org-change>
+  </mat-list-item>
+  <mat-list-item routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" matRipple>
+    <mat-icon mat-list-icon>home</mat-icon>
+    <div mat-line class="text">TOP</div>
+  </mat-list-item>
+  <mat-list-item routerLink="./projects" routerLinkActive="active" [ngClass]="{ active: isProject }" matRipple>
+    <mat-icon mat-list-icon>folder</mat-icon>
+    <div mat-line class="text">プロジェクト</div>
+  </mat-list-item>
+  <mat-list-item routerLink="./trees" routerLinkActive="active" [ngClass]="{ active: isTree }" matRipple>
+    <mat-icon mat-list-icon>check_circle</mat-icon>
+    <div mat-line class="text">TREE</div>
+  </mat-list-item>
+  <ng-container *ngIf="user$ | async as user">
+    <mat-list-item *ngIf="user?.isAdmin" routerLink="/admin/guideline" routerLinkActive="active" matRipple>
+      <mat-icon mat-list-icon>code</mat-icon>
+      <div mat-line class="text">DEV</div>
+    </mat-list-item>
+  </ng-container>
+  <span fxFlex></span>
+  <mat-list-item matRipple>
     <span class="ui-cursor" routerLink="/help" matTooltip="HELP" matTooltipPosition="right" target="_blank"><mat-icon>help</mat-icon></span>
-  </div>
-  <div class="mt-3">
-    <!--    <app-m-feedback></app-m-feedback>-->
-  </div>
-  <div class="p-3 ui-link-account">
-    <app-m-settings-icon></app-m-settings-icon>
-  </div>
-</div>
+  </mat-list-item>
+<!--  <mat-list-item>-->
+<!--    <app-m-feedback></app-m-feedback>-->
+<!--  </mat-list-item>-->
+  <mat-list-item matRipple>
+    <app-m-settings-icon class="text"></app-m-settings-icon>
+  </mat-list-item>
+</mat-list>

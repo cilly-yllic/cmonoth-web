@@ -10,7 +10,7 @@ export class SlackUrlService {
   constructor(private functionsSv: FunctionsService, private clientsSv: ClientsService) {}
 
   check(url: string, target: string) {
-    return this.clientsSv.getOwn().pipe(
+    return this.clientsSv.getOwnClient().pipe(
       take(1),
       map((user) => user ? user.name : ''),
       mergeMap((username) => this.functionsSv.slack({ type: 'check', url, username, target }))

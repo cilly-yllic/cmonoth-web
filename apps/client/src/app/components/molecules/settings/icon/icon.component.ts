@@ -1,11 +1,13 @@
 import { Component, OnDestroy } from '@angular/core'
-import { map } from 'rxjs/operators'
+import { map, mergeMap } from 'rxjs/operators'
 
 import { RouterService } from '~services/router.service'
 import { AuthService } from '~services/firebase/auth.service'
 import { ClientService } from '~services/db/client.service'
 import { UserService } from '~services/db/user.service'
 import { SubscriptionsDirective } from '~extends/directives/subscriptions.directive'
+
+import { NAVIGATES } from '~configs'
 
 @Component({
   selector: 'app-m-settings-icon',
@@ -18,15 +20,20 @@ export class IconComponent extends SubscriptionsDirective {
     map((user) => user?.photoUrl || 'assets/images/avatar_no.png'),
     map((path) => `url(${path})`)
   )
-  constructor(private rSv: RouterService, private authSv: AuthService, private cSv: ClientService, private userSv: UserService) {
+  constructor(private routerSv: RouterService, private authSv: AuthService, private cSv: ClientService, private userSv: UserService) {
     super()
   }
 
   onSignOut(): void {
-    this.authSv.signOutAndRedirect()
+    this.authSv.promiseSignOut()
+      .then(
+        () => {
+          this.routerSv.navigate([NAVIGATES.SIGN_IN])
+        }
+      )
   }
 
   onNavigate(path: string): void {
-    this.subscriptions.add(this.cSv.clientName$.subscribe((name) => this.rSv.navigate([`/${name}/${path}`])))
+    this.subscriptions.add(this.cSv.clientName$.subscribe((name) => this.routerSv.navigate([`/${name}/${path}`])))
   }
 }

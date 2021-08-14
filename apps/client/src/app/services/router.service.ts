@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core'
 import { Router, NavigationExtras, UrlTree } from '@angular/router'
 import { Observable, from } from 'rxjs'
+import { map, mergeMap } from 'rxjs/operators'
 import { isGuestPage, jumpTo } from '~utils/location'
 import { GUEST_PATHS } from '~configs'
+import { Client } from '~types/db/clients'
+import { ClientService } from '~services/db/client.service'
 
 const isGuest = (path: string): boolean => {
   const headPath = path.replace(/^\//, '').replace(/^([^\/]+).*/, '$1')
@@ -23,7 +26,8 @@ export interface Breadcrumb {
   providedIn: 'root',
 })
 export class RouterService {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private clientSv: ClientService) {}
+  // constructor(private router: Router) {}
 
   navigate(commands: any[], extras?: NavigationExtras): Observable<boolean> {
     console.log('navigate', commands)
@@ -42,7 +46,15 @@ export class RouterService {
   }
 
   clientNavigate(commands: any[], extras?: NavigationExtras): Observable<boolean> {
-    return this.navigate(commands, extras)
+    return this.clientSv.clientName$.pipe(
+      map((v) => {
+        console.log('commands', commands)
+        console.log('v', v)
+        commands.unshift(v)
+        return commands
+      }),
+      mergeMap((v) => this.navigate(v, extras))
+    )
   }
 
   parseUrl(path: string = ''): UrlTree | boolean {
@@ -52,6 +64,10 @@ export class RouterService {
       jumpTo(path)
       return false
     }
+  }
+
+  clientParseUrl(path: string = ''): Observable<UrlTree | boolean> {
+    return this.clientSv.clientName$.pipe(map((v) => this.parseUrl(`${v}/${path}`)))
   }
 
   get breadcrumbs(): Breadcrumb[] {

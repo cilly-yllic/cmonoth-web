@@ -1,0 +1,31 @@
+//mat-list-item.active {
+//  .mat-icon {
+//    color: #c92828;
+//  }
+//  .text {
+//    //font-size: 0.7rem;
+//    color: #c92828;
+//  }
+//}
+
+mat-list-item {
+  cursor: pointer;
+  &.active {
+    .mat-icon {
+      color: #c92828;
+    }
+    .text {
+      //font-size: 0.7rem;
+      color: #c92828;
+    }
+  }
+  &:not(active) {
+    .mat-icon {
+      color: white;
+    }
+    .text {
+      //font-size: 0.7rem;
+      color: white;
+    }
+  }
+}

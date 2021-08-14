@@ -13,7 +13,7 @@ export class ClientGuard implements CanLoad {
   constructor(private authSv: AuthService, private clientsSv: ClientsService, private collaboratorsSv: CollaboratorsService) {}
 
   checkUser(clientName: string, uid: string): Observable<boolean> {
-    return this.clientsSv.getOne(uid).pipe(
+    return this.clientsSv.getClient(uid).pipe(
       take(1),
       mergeMap((user) => {
         if (!user) {

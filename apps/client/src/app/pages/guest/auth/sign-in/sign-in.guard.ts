@@ -19,7 +19,7 @@ export class SignInGuard implements CanActivate {
   }
 
   getClient(user: Auth): Observable<boolean> {
-    return this.clientsSv.getOne(user.uid).pipe(
+    return this.clientsSv.getClient(user.uid).pipe(
       map((client) => {
         if (!client) {
           return true

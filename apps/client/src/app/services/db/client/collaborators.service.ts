@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core'
+import { Router } from '@angular/router'
 import { Observable, of, from, throwError, combineLatest } from 'rxjs'
 import { mergeMap, switchMap, map, share, tap } from 'rxjs/operators'
 
@@ -15,10 +16,10 @@ import { COLLECTION_NAME, Collaborator } from '~types/db/client/collaborators'
 @Injectable({
   providedIn: 'root'
 })
-export class CollaboratorsService extends FirestoreService {
-  constructor(af: AngularFirestore, authSv: AuthService, private ClientsSv: ClientsService) {
-    super(af, authSv);
-  }
+export class CollaboratorsService extends ClientsService {
+  // constructor(router: Router, af: AngularFirestore, authSv: AuthService, private ClientsSv: ClientsService) {
+  //   super(router, af, authSv);
+  // }
   // --- org ---
   isUserCollaborator(clientId: string, userId: string): Observable<boolean> {
     console.log('isUserJoined', clientId, userId)
@@ -31,7 +32,7 @@ export class CollaboratorsService extends FirestoreService {
       .pipe(map((user) => !!user && user.status === 'accepted'))
   }
   isUserCollaboratorByOrgName(clientNameDestination: string, userId: string): Observable<boolean> {
-    return this.ClientsSv.getOneByName(clientNameDestination).pipe(
+    return this.getClientByName(clientNameDestination).pipe(
       mergeMap((client) => {
         if (!client) {
           return of(false)

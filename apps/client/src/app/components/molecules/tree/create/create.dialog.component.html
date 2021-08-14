@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>新しいツリー</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <div class="form-group">
+      <div *ngIf="!projectId">
+        <label>プロジェクト名</label>
+        <app-a-select-options
+          [items]="projects$ | async"
+          [key]="'name'"
+          [formControl]="project"
+        ></app-a-select-options>
+      </div>
+      <label>ツリー名</label>
+      <input
+        type="text"
+        name="InputString"
+        class="form-control"
+        placeholder="目標とか書くといいかも"
+        [formControl]="name"
+      />
+    </div>
+    <mat-dialog-actions>
+      <button type="button" mat-dialog-close class="btn btn-secondary">
+        <span aria-hidden="true">cancel</span>
+      </button>
+      <button type="submit" color="warn" [disabled]="form.invalid" class="btn btn-primary">
+        ツリー作成
+      </button>
+    </mat-dialog-actions>
+  </form>
+  <app-a-spinner [spinning]="updating"></app-a-spinner>
+</mat-dialog-content>

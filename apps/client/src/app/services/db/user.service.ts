@@ -9,7 +9,7 @@ import { ClientsService } from './clients.service';
 })
 export class UserService {
 
-  user$ = this.clientsSv.getOwn()
+  user$ = this.clientsSv.getOwnClient()
   // user
   userName$: Observable<User['name']> = this.user$.pipe(map((user) => user?.name || ''))
   userId$: Observable<User['id']> = this.user$.pipe(map((user) => user?.id || ''))

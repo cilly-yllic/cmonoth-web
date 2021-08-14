@@ -19,12 +19,13 @@
       "~layouts/*": ["src/app/layouts/*"],
       "~animations/*": ["src/app/animations/*"],
       "~modules/*": ["src/app/modules/*"],
-      "~dialogs/*": ["src/app/dialogs/*"],
+      "~dialogs": ["src/app/dialogs/index.ts"],
       "~extends/*": ["src/app/extends/*"],
 
       "~organisms/*": ["src/app/components/organisms/*"],
       "~molecules/*": ["src/app/components/molecules/*"],
-      "~atoms/*": ["src/app/components/atoms/*"]
+      "~atoms/*": ["src/app/components/atoms/*"],
+      "~pipes/*": ["src/app/pipes/*"]
     },
     "outDir": "../../dist/out-tsc",
     "types": []

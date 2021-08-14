@@ -9,6 +9,6 @@ export class CanSignUpService {
   constructor(private functionsSv: FunctionsService) {}
 
   run(email: string): Observable<boolean> {
-    return this.functionsSv.run('canSignUp', { email })
+    return this.functionsSv.run('calls-get-auth-checkAvailabilitySignUp', { email })
   }
 }

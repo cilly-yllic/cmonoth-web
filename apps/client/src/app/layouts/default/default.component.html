@@ -1,10 +1,113 @@
-<div class="ui-layout-body" [ngClass]="'cmnt-app-theme'">
-  <div class="ui-layout-side">
-    <div class="ui-layout-navigation">
-      <app-o-navigations></app-o-navigations>
-    </div>
-  </div>
-  <div class="ui-layout-main">
+<!--<div class="ui-layout-body" [ngClass]="'cmnt-app-theme'">-->
+<!--  <div class="ui-layout-side">-->
+<!--    <div class="ui-layout-navigation">-->
+<!--      <app-o-navigations></app-o-navigations>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="ui-layout-main">-->
+<!--    <ng-content></ng-content>-->
+<!--  </div>-->
+<!--</div>-->
+
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side" opened>
+    <app-o-navigations></app-o-navigations>
+<!--    <mat-list>-->
+      <!--      <mat-list-item (click)="onClick($event, 'csv')" class="link">-->
+      <!--        <mat-icon mat-list-icon>directions_boat</mat-icon>-->
+      <!--        <div mat-line>CSVインポート</div>-->
+      <!--      </mat-list-item>-->
+
+      <!--      <mat-divider></mat-divider>-->
+
+      <!--      <mat-list-item (click)="onClick($event, 'uploads')" class="link">-->
+      <!--        <mat-icon mat-list-icon>directions_boat</mat-icon>-->
+      <!--        <div mat-line>CSV履歴</div>-->
+      <!--            </mat-list-item>-->
+      <!--            <mat-list-item>-->
+<!--      <mat-tree [dataSource]="shipmentsSource" [treeControl]="shipmentsControl" class="node-tree">-->
+<!--        &lt;!&ndash; This is the tree node template for leaf nodes &ndash;&gt;-->
+<!--        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>-->
+<!--          <li class="mat-tree-node ui-pointer" matRipple (click)="onClick($event, groupId, node.id)">-->
+<!--            &lt;!&ndash; use a disabled button to provide padding for tree leaf &ndash;&gt;-->
+<!--            <button mat-icon-button disabled></button>-->
+<!--            {{node.name}}-->
+<!--          </li>-->
+<!--        </mat-tree-node>-->
+<!--        &lt;!&ndash; This is the tree node template for expandable nodes &ndash;&gt;-->
+<!--        <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">-->
+<!--          <li>-->
+<!--            <div class="mat-tree-node ui-pointer" matTreeNodeToggle matRipple>-->
+<!--              <mat-icon></mat-icon>-->
+<!--              <mat-icon mat-list-icon>article</mat-icon>-->
+<!--              <button mat-icon-button [attr.aria-label]="'Toggle ' + node.name">-->
+<!--                <mat-icon>-->
+<!--                  {{shipmentsControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}-->
+<!--                </mat-icon>-->
+<!--              </button>-->
+<!--              {{node.name}}-->
+<!--            </div>-->
+<!--            <ul [class.node-tree-invisible]="!shipmentsControl.isExpanded(node)">-->
+<!--              <ng-container matTreeNodeOutlet></ng-container>-->
+<!--            </ul>-->
+<!--          </li>-->
+<!--        </mat-nested-tree-node>-->
+<!--      </mat-tree>-->
+
+<!--      <mat-divider></mat-divider>-->
+
+<!--      <mat-tree [dataSource]="expenseSource" [treeControl]="expenseControl" class="node-tree">-->
+<!--        &lt;!&ndash; This is the tree node template for leaf nodes &ndash;&gt;-->
+<!--        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>-->
+<!--          <li class="mat-tree-node ui-pointer" matRipple (click)="onClick($event, groupId, node.id)">-->
+<!--            &lt;!&ndash; use a disabled button to provide padding for tree leaf &ndash;&gt;-->
+<!--            <button mat-icon-button disabled></button>-->
+<!--            {{node.name}}-->
+<!--          </li>-->
+<!--        </mat-tree-node>-->
+<!--        &lt;!&ndash; This is the tree node template for expandable nodes &ndash;&gt;-->
+<!--        <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">-->
+<!--          <li>-->
+<!--            <div class="mat-tree-node ui-pointer" matTreeNodeToggle matRipple>-->
+<!--              <mat-icon></mat-icon>-->
+<!--              <mat-icon mat-list-icon>receipt_long</mat-icon>-->
+<!--              <button mat-icon-button [attr.aria-label]="'Toggle ' + node.name">-->
+<!--                <mat-icon>-->
+<!--                  {{expenseControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}-->
+<!--                </mat-icon>-->
+<!--              </button>-->
+<!--              {{node.name}}-->
+<!--            </div>-->
+<!--            <ul [class.node-tree-invisible]="!expenseControl.isExpanded(node)">-->
+<!--              <ng-container matTreeNodeOutlet></ng-container>-->
+<!--            </ul>-->
+<!--          </li>-->
+<!--        </mat-nested-tree-node>-->
+<!--      </mat-tree>-->
+
+<!--      <mat-divider></mat-divider>-->
+
+<!--      <mat-list-item (click)="onClick($event, groupId, 'sales-statements')" class="link">-->
+<!--        <mat-icon mat-list-icon>leaderboard</mat-icon>-->
+<!--        <div mat-line>売上精算書一覧</div>-->
+<!--      </mat-list-item>-->
+
+<!--      <mat-divider></mat-divider>-->
+
+<!--      <mat-list-item (click)="onClick($event, groupId, 'members')" class="link">-->
+<!--        <mat-icon mat-list-icon>group</mat-icon>-->
+<!--        <div mat-line>組合員</div>-->
+<!--      </mat-list-item>-->
+
+<!--      <mat-divider></mat-divider>-->
+
+<!--      <mat-list-item (click)="onClick($event, groupId, 'products')" class="link">-->
+<!--        <mat-icon mat-list-icon>local_shipping</mat-icon>-->
+<!--        <div mat-line>商品一覧</div>-->
+<!--      </mat-list-item>-->
+<!--    </mat-list>-->
+  </mat-drawer>
+  <mat-drawer-content>
     <ng-content></ng-content>
-  </div>
-</div>
+  </mat-drawer-content>
+</mat-drawer-container>

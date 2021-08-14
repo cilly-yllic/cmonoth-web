@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth'
 import { Observable, from, throwError, of } from 'rxjs'
 import { tap, map, mergeMap } from 'rxjs/operators'
-import { RouterService } from '~services/router.service'
 import { Auth } from '~types/auth'
 import { NAVIGATES } from '~configs'
 import { getUrl } from '~utils/location'
@@ -18,7 +17,7 @@ const getActionCodeSettings = (email: string) => ({
 })
 export class AuthService {
 
-  constructor(private afa: AngularFireAuth, private rs: RouterService) {}
+  constructor(private afa: AngularFireAuth) {}
 
   getUser(): Observable<Auth | null> {
     return this.afa.user
@@ -66,14 +65,11 @@ export class AuthService {
   signInWithEmailLink(email: string) {
     return from(this.afa.signInWithEmailLink(email, window.location.href))
   }
-  signOut(): Observable<any> {
-    return from(this.afa.signOut())
-  }
 
-  signOutAndRedirect(): void {
-    this.afa.signOut().then(() => {
-      console.log('signOut')
-      this.rs.navigate([NAVIGATES.SIGN_IN])
-    })
+  promiseSignOut(): Promise<any> {
+    return this.afa.signOut()
+  }
+  signOut(): Observable<any> {
+    return from(this.promiseSignOut())
   }
 }

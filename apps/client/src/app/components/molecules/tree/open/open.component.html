@@ -1,0 +1,17 @@
+<ng-container *ngIf="tree$ | async as tree">
+  <button
+    *ngIf="!updating"
+    mat-flat-button
+    class="ui-fav"
+    (click)="onClick(!tree.isOpen)"
+    [matTooltip]="tree.isOpen ? 'CLOSEします' : 'OPENします'"
+    [matTooltipPosition]="'below'"
+    [ngClass]="tree.isOpen ? 'is-open' : 'is-close'"
+  >
+    {{ tree.isOpen ? 'OPEN' : 'CLOSE' }}
+  </button>
+</ng-container>
+
+<div *ngIf="updating" class="mat-button ui-btn-tree-status is-spinner">
+  <app-a-spinner [spinning]="true" [diameter]="20"></app-a-spinner>
+</div>

@@ -1,26 +1,25 @@
-<div>
-  <mat-grid-list cols="2" rowHeight="50px" class="ui-header">
-    <mat-grid-tile class="ui-header-logo">
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span>
       <a routerLink="/landing" routerLinkActive="active" class="ui-ml-10"
-        ><img src="assets/images/logo_black.png" width="150" alt="ランディングページ"
+      ><img src="assets/images/logo_black.png" width="150" alt="ランディングページ"
       /></a>
-    </mat-grid-tile>
-    <mat-grid-tile class="ui-header-nav">
-      <nav mat-tab-nav-bar>
-        <a
-          mat-tab-link
-          *ngFor="let link of links"
-          [routerLink]="link.link"
-          routerLinkActive
-          #rla="routerLinkActive"
-          [active]="rla.isActive"
-        >
-          {{ link?.name }}
-        </a>
-      </nav>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
+    </span>
+    <span class="ui-space"></span>
+    <nav mat-tab-nav-bar>
+      <a
+        mat-tab-link
+        *ngFor="let link of links"
+        [routerLink]="link.link"
+        routerLinkActive
+        #rla="routerLinkActive"
+        [active]="rla.isActive"
+      >
+        {{ link?.name }}
+      </a>
+    </nav>
+  </mat-toolbar-row>
+</mat-toolbar>
 
 <ng-content></ng-content>
 

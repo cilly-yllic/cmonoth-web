@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module'
 import { ClientModule } from '~roots/client/client.module' // TODO コメントアウトでサイズの変更がされるかチェック
 import { GuestModule } from '~roots/guest/guest.module' // TODO コメントアウトでサイズの変更がされるかチェック
 import { environment } from '~env'
-
+import { NavigationLoadingModule } from '~atoms/navigation-loading/navigation-loading.module'
 
 // --- firebase
 import {
@@ -44,6 +44,7 @@ import { AngularFireAnalyticsModule } from '@angular/fire/analytics'
     AppRoutingModule,
     ClientModule,
     GuestModule,
+    NavigationLoadingModule,
   ],
   providers: [
     FUNCTIONS_PROVIDER,

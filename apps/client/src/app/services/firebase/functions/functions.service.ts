@@ -20,6 +20,6 @@ export class FunctionsService {
   }
 
   slack(data: SlackData) {
-    return this.run('slackNotify', data)
+    return this.run('calls-post-slackNotify', data)
   }
 }

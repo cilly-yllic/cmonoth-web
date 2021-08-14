@@ -39,7 +39,7 @@ export class SignInComponent extends SubscriptionsDirective implements OnInit {
             if (!u) {
               return throwError(Error('user not found'))
             }
-            return this.clientsSv.getOne(u.uid)
+            return this.clientsSv.getClient(u.uid)
           })
         )
         .subscribe(

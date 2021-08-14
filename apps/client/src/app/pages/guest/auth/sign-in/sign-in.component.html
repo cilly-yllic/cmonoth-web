@@ -1,40 +1,38 @@
-<div class="container text-center">
-  <h2 class="form-signin-heading">{{ 'サインイン' }}</h2>
-  <form class="form-signin" [formGroup]="form" (ngSubmit)="onSignIn()">
-    <div class="alert alert-danger" *ngIf="!!errorMessage">
-      <p class="text-danger">{{ errorMessage }}</p>
-    </div>
-    <div *ngIf="email.touched">
-      <div *ngIf="email.errors?.email">
-        <p class="alert alert-danger text-danger">Email形式でお願いします。</p>
-      </div>
-      <div *ngIf="email.errors?.required">
-        <p class="alert alert-danger text-danger">Email入力をお願いします。</p>
-      </div>
-    </div>
-    <label class="sr-only">Email</label>
-    <input type="email" class="form-control" name="Email" [formControl]="email" />
-    <div *ngIf="password.touched">
-      <div *ngIf="password.errors?.minlength || password.errors?.maxlength">
-        <p class="alert alert-danger text-danger">5文字以上・255文字以下でお願いいたします。</p>
-      </div>
-      <div *ngIf="password.errors?.pattern">
-        <p class="alert alert-danger text-danger">a~z / A~Z / 0~9 / -_!?=.*のみです</p>
-      </div>
-    </div>
-    <label class="sr-only">Password</label>
-    <input type="password" class="form-control" name="Password" [formControl]="password" />
-    <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="form.invalid || requested">
-      {{ 'サインイン' }}
-    </button>
-    <app-a-navigate type="a" path="/passwordReset">
-      <ng-container a>{{ 'パスワードを忘れた方はこちら' }}</ng-container>
-    </app-a-navigate>
-    <hr />
-    <!--    <app-a-oauth-button [type]="'github'" ></app-a-oauth-button>-->
-    <!--<app-a-oauth-button [type]="'facebook'" ></app-a-oauth-button>-->
-    <!--<app-a-oauth-button [type]="'google'" ></app-a-oauth-button>-->
-  </form>
+<div class="ui-signin">
+  <mat-card class="signin-card">
+    <mat-card-header>
+      <mat-card-title class="signin-title">サインイン</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSignIn()" class="signin-form">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input type="email" matInput name="Email" [formControl]="email" />
+          <ng-container *ngIf="email.touched">
+            <mat-error *ngIf="email.errors?.email">Email形式でお願いします。</mat-error>
+            <mat-error *ngIf="email.errors?.required">Email入力をお願いします。</mat-error>
+          </ng-container>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label class="sr-only">Password</mat-label>
+          <input type="password" matInput name="Password" [formControl]="password" />
+          <ng-container *ngIf="password.touched">
+            <mat-error *ngIf="password.errors?.minlength || password.errors?.maxlength">5文字以上・255文字以下でお願いいたします。</mat-error>
+            <mat-error *ngIf="password.errors?.pattern">a~z / A~Z / 0~9 / -_!?=.*のみです</mat-error>
+          </ng-container>
+        </mat-form-field>
+        <div *ngIf="!!errorMessage">
+          <p>{{ errorMessage }}</p>
+        </div>
+        <button type="submit" mat-flat-button color="primary" [disabled]="form.invalid || requested">
+          サインイン
+        </button>
+        <app-a-navigate type="a" path="/passwordReset">
+          <ng-container a>パスワードを忘れた方はこちら</ng-container>
+        </app-a-navigate>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>
 
 <app-a-spinner [spinning]="signingIn"></app-a-spinner>

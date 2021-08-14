@@ -1,0 +1,13 @@
+<mat-form-field>
+  <mat-label>Slack URL</mat-label>
+  <input name="Url" matInput [formControl]="control" placeholder="https://hooks.slack.com/services/xxxx/xxxx" />
+  <mat-error *ngIf="control.hasError('request')">{{ control.errors?.request.message }}</mat-error>
+  <mat-error *ngIf="control.hasError('pattern')">should be url</mat-error>
+  <mat-error *ngIf="control.hasError('test')">連携テストを実行してください。</mat-error>
+</mat-form-field>
+<button mat-button type="button" (click)="onTest($event)" [disabled]="!url || control.disabled || control.hasError('pattern')">テスト通知</button>
+<button mat-button type="button" (click)="onChancel($event)" [disabled]="url === backup || control.disabled">Cancel</button>
+
+<div *ngIf="isChanged && control.valid">
+  Test Succeeded.
+</div>

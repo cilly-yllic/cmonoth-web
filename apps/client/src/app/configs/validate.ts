@@ -13,11 +13,12 @@ export const ASSETS = '^assets(\\/[\\w-]+)+$'
 export const API_RESOURCES = '^(\\/[\\w-]+)+$'
 export const URL_PATTERN =
   '^(https?:\\/\\/)?' + // protocol
-  '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+  '((([\\w\\d]([\\w\\d-]*[\\w\\d])*)\\.)+[\\w]{2,}|' + // domain name
   '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-  '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+  '(\\:\\d+)?' + // port
+  '(\\/[-\\w\\d%_.~+]*)*' + // path
   '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-  '(\\#[-a-z\\d_]*)?$'
+  '(\\#[-\\w\\d_]*)?$'
 
 export const IP = {
   pattern: '\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}',

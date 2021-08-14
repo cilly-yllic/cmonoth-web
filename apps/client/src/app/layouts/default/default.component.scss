@@ -1,0 +1,30 @@
+.container {
+  //width: 500px;
+  height: 100%;
+  //border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.sidenav {
+  padding: 20px;
+  width: 250px;
+  color: #5a5b65;
+  background-color: #35363D;
+  transform: translateX(0px);
+  transition: width 0.2s, transform 0.2s;
+  box-shadow: 3px 0 6px rgb(0 0 0 / 24%) inset;
+}
+
+.link {
+  cursor: pointer;
+}
+
+.node-tree-invisible {
+  display: none;
+}
+
+.node-tree ul,
+.node-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}

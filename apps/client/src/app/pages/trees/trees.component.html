@@ -1,0 +1,15 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">{{ clientId$ | async }}</li>
+  <li class="breadcrumb-item">project</li>
+  <li class="breadcrumb-item active">tree</li>
+</ol>
+
+<div class="ui-main-inner ui-page-tree-list">
+  <div class="d-flex justify-content-between">
+    <h2 class="ui-title-page">ツリー一覧</h2>
+    <div><app-m-tree-create></app-m-tree-create></div>
+  </div>
+  <div class="ui-area-parts-list">
+    <app-o-trees></app-o-trees>
+  </div>
+</div>

@@ -9,9 +9,9 @@ import { ClientComponent } from './client.component'
 // pages
 import { DashboardModule } from '~pages/dashboard/dashboard.module'
 // import { SettingsModule } from '~pages/settings/settings.module'
-// import { ProjectsModule } from '~pages/projects/projects.module'
-// import { ProjectModule } from '~pages/project/project.module'
-// import { TreesModule } from '~pages/trees/trees.module'
+import { ProjectsModule } from '~pages/projects/projects.module'
+import { ProjectModule } from '~pages/project/project.module'
+import { TreesModule } from '~pages/trees/trees.module'
 // import { TreeModule } from '~pages/tree/tree.module'
 
 @NgModule({
@@ -22,9 +22,9 @@ import { DashboardModule } from '~pages/dashboard/dashboard.module'
     DefaultModule,
     DashboardModule,
     // SettingsModule,
-    // ProjectsModule,
-    // ProjectModule,
-    // TreesModule,
+    ProjectsModule,
+    ProjectModule,
+    TreesModule,
     // TreeModule,
   ],
 })

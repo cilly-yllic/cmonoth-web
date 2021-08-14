@@ -1,0 +1,87 @@
+<form *ngIf="form" [formGroup]="form" class="ui-page-project-edit" (submit)="onSave($event)">
+  <div class="row">
+    <div class="col-3 text-right">
+      プロジェクト名
+    </div>
+    <div class="col-9">
+      <mat-form-field appearance="outline">
+        <mat-label>プロジェクトの名前は？</mat-label>
+        <input matInput name="Name" formControlName="name" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 text-right">ステータス</div>
+    <div class="col-9">
+      <mat-button-toggle-group formControlName="isOpen">
+        <mat-button-toggle [value]="true">OPEN</mat-button-toggle>
+        <mat-button-toggle [value]="false">CLOSE</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 text-right">プロジェクト画像</div>
+    <div class="col-9">
+      <app-a-image-controller [path]="iconUrl$ | async" [dummyPath]="'assets/images/project_no.png'"></app-a-image-controller>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 text-right">COLOR</div>
+    <div class="col-9">
+<!--      <app-a-color-picker [color]="form?.value?.color" (changed)="onChange('color', $event)"></app-a-color-picker>-->
+      <app-a-color-picker formControlName="color"></app-a-color-picker>
+      <button mat-stroked-button (click)="onCancel('color')" [disabled]="colorDisabled" class="ml-3">もとに戻す</button>
+    </div>
+  </div>
+  <!--<div class="row">-->
+  <!--<div class="col-3 text-right">LABEL</div>-->
+  <!--<div class="col-9">-->
+  <!--<app-m-project-labels></app-m-project-labels>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!-- ↓組織用 -->
+
+  <div *ngIf="isOrg$ | async">
+    <div class="row">
+      <div class="col-3 text-right">
+        プライバシー
+      </div>
+      <div class="col-9">
+        <mat-radio-group formControlName="restriction">
+          <mat-radio-button class="example-radio-button" [value]="'assign'">アサインユーザーのみ</mat-radio-button>
+          <mat-radio-button class="example-radio-button" [value]="'read'">見るだけ</mat-radio-button>
+          <mat-radio-button class="example-radio-button" [value]="'write'">書き込み</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 text-right">
+        Slack
+      </div>
+      <div class="col-9">
+        <app-a-slack-url *ngIf="project$ | async as project" [target]="'プロジェクト: ' + project.name" formControlName="slackUrl"></app-a-slack-url>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 text-right">
+        Assign
+      </div>
+      <div class="col-9">
+        <!--        <app-m-project-assign (changed)="assignChanged = $event"></app-m-project-assign>-->
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-end">
+    <div class="col-9">
+      <button mat-flat-button color="primary" type="submit" [disabled]="disabled">変更を保存する</button>
+    </div>
+  </div>
+  <hr />
+  <div class="row justify-content-end">
+    <div class="col-9">
+      <!--      <app-m-project-delete [project]="backup" [buttonText]="'Delete'"></app-m-project-delete>-->
+    </div>
+  </div>
+</form>
+
+<app-a-spinner [spinning]="updating"></app-a-spinner>
