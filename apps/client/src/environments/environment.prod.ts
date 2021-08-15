@@ -10,7 +10,10 @@ const firebaseConfig = {
 }
 
 export const environment = {
+  envName: '',
+  useEmulators: true,
+  debugAnalytics: true,
   production: true,
   firebaseConfig,
-  DATABASE_VERSION: 1
+  DATABASE_VERSION: 1,
 };

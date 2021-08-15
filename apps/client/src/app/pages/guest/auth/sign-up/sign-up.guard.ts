@@ -3,7 +3,9 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angul
 import { Observable } from 'rxjs'
 import { AuthService } from '~services/firebase/auth.service'
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class SignUpGuard implements CanActivate {
   constructor(private authSv: AuthService) {}
 

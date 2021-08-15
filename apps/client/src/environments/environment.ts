@@ -14,14 +14,11 @@ const firebaseConfig = {
 
 export const environment = {
   envName: 'local',
+  useEmulators: false,
+  debugAnalytics: true,
   production: false,
   firebaseConfig,
   DATABASE_VERSION: 1,
-  debug: {
-    emulator: false,
-    storage: false,
-    analytics: true,
-  },
 };
 
 /*

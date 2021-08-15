@@ -25,6 +25,7 @@
     "format:check": "nx format:check",
     "update": "nx migrate latest",
     "workspace-generator": "nx workspace-generator",
+    "deploy:hosting:preview": "firebase hosting:channel:deploy",
     "dep-graph": "nx dep-graph",
     "help": "nx help"
   },
