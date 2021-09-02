@@ -1,4 +1,4 @@
-import { Create, Update, Get } from '~types/db/common'
+import { Create, Update, Get, Timestamp, FieldValue } from '~types/db/common'
 import { User } from '~types/db/client/users'
 import { Project } from '~types/db/client/projects'
 
@@ -11,18 +11,24 @@ interface Base {
   isOpen: boolean
 }
 
-export interface CreateTree extends Base, Create {
+export interface AllowCreateTree extends Base {
+  updatedTaskAt: FieldValue | Date | null
+}
+
+export interface CreateTree extends AllowCreateTree, Create {
 }
 
 export interface Tree extends Base, Get {
   id: string
   projectId: Project['id']
+  updatedTaskAt: Timestamp | null
 }
 
 export interface AllowUpdateTree {
   name?: string
   description?: string
   isOpen?: boolean
+  updatedTaskAt?: FieldValue | Date | null
 }
 
 export interface UpdateTree extends AllowUpdateTree, Update {}

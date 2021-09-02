@@ -42,10 +42,11 @@ export class TreesService extends ClientsService {
           name,
           description: '',
           isOpen: true,
+          updatedTaskAt: null,
           createdAt: getTimestamp(),
         }
         return from(this.getSubCollection<CreateTree>(clientId, projectId).add(data)).pipe(
-          map((res) => ({ ...data, id: res.id, projectId, createdAt: now() }))
+          map((res) => ({ ...data, id: res.id, projectId, updatedTaskAt: null, createdAt: now() }))
         )
       })
     )

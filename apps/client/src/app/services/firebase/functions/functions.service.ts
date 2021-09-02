@@ -22,4 +22,8 @@ export class FunctionsService {
   slack(data: SlackData) {
     return this.run('calls-post-slackNotify', data)
   }
+
+  generateApiKey(suffix: string, params: any): Observable<any> {
+    return this.run(`calls-post-algolia-generateSecuredApiKeys-${suffix}`, params)
+  }
 }

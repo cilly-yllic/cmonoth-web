@@ -12,13 +12,23 @@ const firebaseConfig = {
   measurementId: 'G-BWPBB165YS',
 }
 
+const ALGOLIA = {
+  APP_ID: '87ZC9GSJBC',
+  INDICES: {
+    PROJECTS: 'yoshi-projects',
+    TREES: 'yoshi-trees',
+  }
+}
+
 export const environment = {
   envName: 'local',
-  useEmulators: false,
+  useEmulators: true,
+  // useEmulators: false,
   debugAnalytics: true,
   production: false,
   firebaseConfig,
   DATABASE_VERSION: 1,
+  ALGOLIA
 };
 
 /*

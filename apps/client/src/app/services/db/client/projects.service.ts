@@ -38,10 +38,11 @@ export class ProjectsService extends ClientsService {
           isOpen: true,
           slackUrl: '',
           restriction: '',
+          updatedTaskAt: null,
           createdAt: getTimestamp(),
         }
         return from(this.getSubCollection<CreateProject>(clientId).add(data)).pipe(
-          map((res) => ({ ...data, id: res.id, createdAt: now() }))
+          map((res) => ({ ...data, id: res.id, updatedTaskAt: null, createdAt: now() }))
         )
       })
     )

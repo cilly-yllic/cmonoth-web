@@ -1,38 +1,39 @@
 <!-- ないとき -->
-<li class="list-group-item" *ngIf="!trees.length; else listTemplate">
+<li class="list-group-item" *ngIf="!trees.hits.length; else listTemplate">
   ツリーはありません。
 </li>
 
 <ng-template #listTemplate>
-  <ng-container *ngIf="projectIdMap$ | async as projectIdMap">
-    <table mat-table [dataSource]="trees">
-      <ng-container matColumnDef="icon">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let row" (click)="onSelectProject($event, row.projectId)">
-          <img
-            [src]="projectIdMap.get(row.projectId)?.iconPath ? projectIdMap.get(row.projectId)?.iconPath : 'assets/images/project_no.png'"
-            class="rounded-circle mr-1"
-            width="24"
-          />
-          {{ projectIdMap.get(row.projectId)?.name }}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>名前</th>
-        <td mat-cell *matCellDef="let row">{{row.name}}</td>
-      </ng-container>
-      <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef>説明</th>
-        <td mat-cell *matCellDef="let row">{{row.description}}</td>
-      </ng-container>
+  <table mat-table [dataSource]="trees.hits">
+    <ng-container matColumnDef="icon">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row" (click)="onSelectProject($event, row.project?.id)">
+        <img
+          [src]="row.project?.iconPath ? row.project?.iconPath : 'assets/images/project_no.png'"
+          class="rounded-circle mr-1"
+          width="24"
+        />
+        {{ row.project?.name }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>名前</th>
+      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>説明</th>
+      <td mat-cell *matCellDef="let row">{{row.description}}</td>
+    </ng-container>
 
-      <!-- TODO yoshi タスク更新の時間登録カラム用意して対応する -->
-      <!-- <p>{{data?.updated_task_at | progress: envNowTime}} / {{_details[data?.id]?.taskCount | pluralForm: 'task'}}</p> -->
-      <tr mat-header-row *matHeaderRowDef="columns"></tr>
-      <tr mat-row *matRowDef="let row; columns: columns;" (click)="onSelectTree($event, row.projectId, row.id)"></tr>
-    </table>
-  </ng-container>
+    <!-- TODO yoshi タスク更新の時間登録カラム用意して対応する -->
+    <!-- <p>{{data?.updated_task_at | progress: envNowTime}} / {{_details[data?.id]?.taskCount | pluralForm: 'task'}}</p> -->
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns;" (click)="onSelectTree($event, row.project?.id, row.id)"></tr>
+  </table>
+  <mat-paginator
+    [length]="trees.nbHits"
+    [pageSize]="trees.hitsPerPage"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    (page)="onPage($event)"
+  ></mat-paginator>
 </ng-template>
-
-<!-- pagination -->
-<!-- <app-m-pagination [totalCount]="backup?.length" [currentPage]="currentPage" [perPageCount]="perPageCount" [maxSize]="maxSize" (change)="onChangedPage( $event )"></app-m-pagination> -->

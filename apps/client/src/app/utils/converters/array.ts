@@ -18,6 +18,8 @@ type Key = string | number
 //   [key in Key]: T
 // }
 
+export const getUnique = (list: (string | number)[]) =>  [...new Set(list)]
+
 export type MapType<T> = Map<string | number, T>
 export const getTargetMap = <T extends { [key: string]: any }>(list: T[], target: string): MapType<T> =>
   list.reduce((acc: MapType<T>, current) => {

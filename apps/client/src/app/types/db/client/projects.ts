@@ -1,4 +1,4 @@
-import { Create, Update, Get } from '~types/db/common'
+import { Create, Update, Get, Timestamp, FieldValue } from '~types/db/common'
 import { User } from '~types/db/client/users'
 
 export const COLLECTION_NAME = 'projects'
@@ -14,11 +14,15 @@ interface Base {
   restriction: string
 }
 
-export interface CreateProject extends Base, Create {
+export interface AllowCreateProject extends Base {
+  updatedTaskAt: FieldValue | Date | null
+}
+export interface CreateProject extends AllowCreateProject, Create {
 }
 
 export interface Project extends Base, Get {
   id: string
+  updatedTaskAt: Timestamp | null
 }
 
 export interface AllowUpdateProject {
@@ -29,6 +33,7 @@ export interface AllowUpdateProject {
   isOpen?: boolean
   slackUrl?: string
   restriction?: string
+  updatedTaskAt?: FieldValue | Date | null
 }
 
 export interface UpdateProject extends AllowUpdateProject, Update {}

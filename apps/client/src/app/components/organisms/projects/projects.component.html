@@ -4,7 +4,7 @@
 </mat-tab-group>
 
 <ng-container *ngIf="projects$ | async as projects">
-  <app-m-projects [projects]="projects[isOpen]"></app-m-projects>
+  <app-m-projects [projects]="projects" (page)="pageSbj.next($event)"></app-m-projects>
 </ng-container>
 
 <app-a-spinner [spinning]="loading"></app-a-spinner>

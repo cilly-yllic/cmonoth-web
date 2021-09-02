@@ -4,7 +4,7 @@
 </mat-tab-group>
 
 <div *ngIf="trees$ | async as trees">
-  <app-m-trees [projectId]="projectId" [trees]="trees[isOpen]"></app-m-trees>
+  <app-m-trees [trees]="trees" (page)="pageSbj.next($event)"></app-m-trees>
 </div>
 
 <app-a-spinner [spinning]="loading"></app-a-spinner>
