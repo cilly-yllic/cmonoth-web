@@ -1,0 +1,46 @@
+<ng-container *ngIf="lines$ | async as lines">
+  <svg
+    *ngIf="!!frame"
+    [style.top.px]="frame.top"
+    [style.left.px]="frame.left"
+    [style.width.px]="frame.width"
+    [style.height.px]="frame.height"
+    [style.position]="'absolute'"
+    class="m-task-relationlines"
+  >
+    <g *ngFor="let line of lines">
+      <!--親子関係のライン-->
+      <path
+        [attr.d]="line.d"
+        [attr.stroke]="line.stroke"
+        [attr.stroke-width]="1"
+        [attr.stroke-dasharray]="'none'"
+        [attr.stroke-linecap]="'round'"
+        [attr.fill]="'transparent'"
+      ></path>
+      <!--↓透明のラインで↑のラインを被せそこにマウスイベントを反応させている。そうすることで表示のラインが細くても反応させる事が容易になる-->
+      <path
+        [attr.d]="line.d"
+        [attr.stroke]="'rgba(0,0,0,0)'"
+        [attr.stroke-width]="20"
+        [attr.stroke-dasharray]="'none'"
+        [attr.stroke-linecap]="'round'"
+        [attr.fill]="'transparent'"
+        (mouseenter)="onRelatedLineEnter(line)"
+        (mouseleave)="onRelatedLineLeave(line)"
+      ></path>
+    </g>
+
+    <!--新しい子タスク用の紐付けライン-->
+    <g *ngIf="createTaskLine$ | async as createTaskLine">
+      <path
+        [attr.d]="createTaskLine?.d"
+        [attr.stroke]="'#ddd'"
+        [attr.stroke-width]="2"
+        [attr.stroke-dasharray]="6"
+        [attr.stroke-linecap]="'round'"
+        [attr.fill]="'transparent'"
+      ></path>
+    </g>
+  </svg>
+</ng-container>

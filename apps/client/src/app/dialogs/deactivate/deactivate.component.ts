@@ -8,16 +8,16 @@ import { SubscriptionsDirective } from '~extends/directives/subscriptions.direct
   styleUrls: ['./deactivate.component.scss'],
 })
 export class DeactivateComponent extends SubscriptionsDirective implements OnInit, OnDestroy {
-  constructor(private navigationLoadingService: NavigationLoadingService) {
+  constructor(private navigationLoadingSv: NavigationLoadingService) {
     super()
   }
 
   ngOnInit(): void {
-    this.subscriptions.add(timer().subscribe(() => this.navigationLoadingService.lock()))
+    this.subscriptions.add(timer().subscribe(() => this.navigationLoadingSv.lock()))
   }
 
   ngOnDestroy(): void {
-    this.navigationLoadingService.unlock()
+    this.navigationLoadingSv.unlock()
     this.subscriptions.unsubscribe()
   }
 }

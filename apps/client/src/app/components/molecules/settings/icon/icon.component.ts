@@ -20,7 +20,7 @@ export class IconComponent extends SubscriptionsDirective {
     map((user) => user?.photoUrl || 'assets/images/avatar_no.png'),
     map((path) => `url(${path})`)
   )
-  constructor(private routerSv: RouterService, private authSv: AuthService, private cSv: ClientService, private userSv: UserService) {
+  constructor(private routerSv: RouterService, private authSv: AuthService, private clientSv: ClientService, private userSv: UserService) {
     super()
   }
 
@@ -34,6 +34,6 @@ export class IconComponent extends SubscriptionsDirective {
   }
 
   onNavigate(path: string): void {
-    this.subscriptions.add(this.cSv.clientName$.subscribe((name) => this.routerSv.navigate([`/${name}/${path}`])))
+    this.subscriptions.add(this.clientSv.clientName$.subscribe((name) => this.routerSv.navigate([`/${name}/${path}`])))
   }
 }

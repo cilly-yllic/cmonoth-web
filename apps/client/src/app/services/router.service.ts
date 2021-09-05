@@ -6,6 +6,7 @@ import { isGuestPage, jumpTo } from '~utils/location'
 import { GUEST_PATHS } from '~configs'
 import { Client } from '~types/db/clients'
 import { ClientService } from '~services/db/client.service'
+import { ClientsService } from '~services/db/clients.service'
 
 const isGuest = (path: string): boolean => {
   const headPath = path.replace(/^\//, '').replace(/^([^\/]+).*/, '$1')
@@ -26,14 +27,12 @@ export interface Breadcrumb {
   providedIn: 'root',
 })
 export class RouterService {
-  constructor(private router: Router, private clientSv: ClientService) {}
+  constructor(private router: Router, private clientsSv: ClientsService) {}
   // constructor(private router: Router) {}
 
   navigate(commands: any[], extras?: NavigationExtras): Observable<boolean> {
-    console.log('navigate', commands)
     const path = commands.join()
     if (isGuestPage === isGuest(path)) {
-      console.log('isGuestPage', path)
       return from(this.router.navigate(commands, extras))
     } else {
       return from(
@@ -46,10 +45,8 @@ export class RouterService {
   }
 
   clientNavigate(commands: any[], extras?: NavigationExtras): Observable<boolean> {
-    return this.clientSv.clientName$.pipe(
+    return this.clientsSv.getCurrentClientName().pipe(
       map((v) => {
-        console.log('commands', commands)
-        console.log('v', v)
         commands.unshift(v)
         return commands
       }),
@@ -67,7 +64,7 @@ export class RouterService {
   }
 
   clientParseUrl(path: string = ''): Observable<UrlTree | boolean> {
-    return this.clientSv.clientName$.pipe(map((v) => this.parseUrl(`${v}/${path}`)))
+    return this.clientsSv.getCurrentClientName().pipe(map((v) => this.parseUrl(`${v}/${path}`)))
   }
 
   get breadcrumbs(): Breadcrumb[] {

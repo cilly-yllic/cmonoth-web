@@ -21,7 +21,7 @@ const getModeAndData = (queryParams: QueryParams): SignUpData | undefined => {
 })
 // export class ActionGuard implements CanActivate, CanActivateChild {
 export class ActionGuard implements CanActivate, Resolve<Observable<any> | Promise<any> | any> {
-  constructor(private cSUSv: CanSignUpService) {}
+  constructor(private canSignUpSv: CanSignUpService) {}
 
   // TODO ログイン情報も確認
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
@@ -43,7 +43,7 @@ export class ActionGuard implements CanActivate, Resolve<Observable<any> | Promi
       return false
     }
     if (data.mode === 'signIn' && firebase.auth().isSignInWithEmailLink(window.location.href)) {
-      return this.cSUSv.run(data.email)
+      return this.canSignUpSv.run(data.email)
     }
     return false
   }

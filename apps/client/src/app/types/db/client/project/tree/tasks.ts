@@ -8,6 +8,7 @@ export const COLLECTION_NAME = 'tasks'
 
 // --- tasks
 interface Base {
+  incrementNum: number
   createdUserId: User['id']
   name: string
   description: string

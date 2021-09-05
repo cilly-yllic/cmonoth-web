@@ -1,0 +1,27 @@
+<div *ngIf="tasks$ | async as tasks" [style.position]="'relative'" class="o-tasks-treestructure">
+  <!--ここでSVG使って親子関係のラインを表示-->
+  <app-m-task-relation-lines [tasks]="tasks" [frame]="frame$ | async"></app-m-task-relation-lines>
+  <!--  <div (mousedown)="onStopPropagation( $event )">-->
+  <!--    <app-m-tasks-group-tree-structure></app-m-tasks-group-tree-structure>-->
+  <!--  </div>-->
+
+  <!--  &lt;!&ndash;タスク一覧&ndash;&gt;-->
+  <!--  <div [style.position]="'absolute'" (mousedown)="onStopPropagation( $event )" (mouseup)="onStopPropagation( $event )">-->
+  <!--    &lt;!&ndash;登録タスク&ndash;&gt;-->
+  <!--    <app-m-tasks (create)="onCreateChild( $event )"></app-m-tasks>-->
+  <!--    &lt;!&ndash;relation ラインをマウスオーバーした際のタスク追加ボタン&ndash;&gt;-->
+  <!--    <div *ngIf="taskLineMiddlePoint" [style.position]="'absolute'" [style.top.px]="taskLineMiddlePoint.top" [style.left.px]="taskLineMiddlePoint.left">-->
+  <!--      <button type="button" mat-mini-fab class="ui-btn-line-plus" (click)="onCreateMiddleDegreeTask( $event )"><mat-icon>add</mat-icon></button>-->
+  <!--    </div>-->
+  <!--    &lt;!&ndash;新しい子タスク&ndash;&gt;-->
+  <!--    <app-m-task-create></app-m-task-create>-->
+  <!--  </div>-->
+
+  <!--  &lt;!&ndash;マウスドラッグでの選択エリア&ndash;&gt;-->
+  <!--  <app-a-dragging-area *ngIf="isLockedDragging" (dragging)="onDraggingArea( $event )" (dragged)="onDraggedArea( $event )"></app-a-dragging-area>-->
+  <div [style.position]="'absolute'" (mousedown)="onStopPropagation($event)" (mouseup)="onStopPropagation($event)">
+    <app-m-tasks [tasks]="tasks"></app-m-tasks>
+    <app-a-task-create-button></app-a-task-create-button>
+    <app-m-task-create [projectId]="projectId" [treeId]="treeId"></app-m-task-create>
+  </div>
+</div>

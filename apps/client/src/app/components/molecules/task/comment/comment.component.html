@@ -1,0 +1,14 @@
+<div class="d-flex justify-content-start">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <textarea
+      name="Comment"
+      placeholder="Write a comment or drag your files here..."
+      [formControl]="comment"
+      (keyup.enter)="onEnter($event)"
+      class="form-control"
+    ></textarea>
+    <button type="submit" class="btn btn-outline-primary" [disabled]="form.invalid">
+      投稿
+    </button>
+  </form>
+</div>

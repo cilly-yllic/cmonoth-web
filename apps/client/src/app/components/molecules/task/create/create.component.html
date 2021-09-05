@@ -1,0 +1,18 @@
+<div
+  *ngIf="position$ | async as position"
+  [style.width.px]="position.width"
+  [style.height.px]="position.height"
+  [style.background-color]="'white'"
+  [class]="'div_border is-new m-task-create'"
+  [style.position]="'absolute'"
+  [style.top.px]="position.top"
+  [style.left.px]="position.left"
+  (click)="onStopPropagation($event)"
+>
+  <form [formGroup]="form" (ngSubmit)="onSubmit($event, position)">
+    <input type="text" name="TaskName" [formControl]="name" class="form-control form-control-sm mb-3" />
+    <button type="submit" class="btn btn-secondary btn-sm btn-block" [disabled]="form.invalid">
+      タスク作成
+    </button>
+  </form>
+</div>

@@ -12,7 +12,7 @@ import { DashboardModule } from '~pages/dashboard/dashboard.module'
 import { ProjectsModule } from '~pages/projects/projects.module'
 import { ProjectModule } from '~pages/project/project.module'
 import { TreesModule } from '~pages/trees/trees.module'
-// import { TreeModule } from '~pages/tree/tree.module'
+import { TreeModule } from '~pages/tree/tree.module'
 
 @NgModule({
   declarations: [ClientComponent],
@@ -25,7 +25,7 @@ import { TreesModule } from '~pages/trees/trees.module'
     ProjectsModule,
     ProjectModule,
     TreesModule,
-    // TreeModule,
+    TreeModule,
   ],
 })
 export class ClientModule {}

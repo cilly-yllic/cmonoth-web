@@ -1,0 +1,8 @@
+<div [ngSwitch]="type$ | async">
+  <div *ngSwitchCase="'tree'">
+    <app-o-tasks-tree-structure [projectId]="projectId" [treeId]="treeId"></app-o-tasks-tree-structure>
+  </div>
+  <div *ngSwitchCase="'chart'">
+    chart
+  </div>
+</div>

@@ -44,9 +44,9 @@ export class CreateDialogComponent extends SubscriptionsDirective implements OnI
     return this.submitSbj.asObservable()
       .pipe(
         mergeMap(({ name, projectId }) => this.treesSv.post(name, projectId)),
-        mergeMap((tree) => this.tasksSv.post(tree.name, tree.projectId, tree.id, '1')),
+        mergeMap((tree) => this.tasksSv.post(tree.name, tree.projectId, tree.id, 1)),
         mergeMap((task) =>
-          this.tasksSv.postOrUpdateStructure([[{ id: task.id, children: [] }]], task.projectId, task.treeId, true).pipe(map(() => task))
+          this.tasksSv.postOrUpdateStructure([[{ num: task.incrementNum, children: [] }]], task.projectId, task.treeId, true).pipe(map(() => task))
         )
       )
       .subscribe(

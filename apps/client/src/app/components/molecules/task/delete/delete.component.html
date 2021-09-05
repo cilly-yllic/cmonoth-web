@@ -1,0 +1,7 @@
+<button
+  type="button"
+  class="close ui-cursor"
+  (click)="showDialog($event, { data: { title: 'delete_task', content: task?.name, button: 'delete' } })"
+>
+  <span>&times;</span>
+</button>

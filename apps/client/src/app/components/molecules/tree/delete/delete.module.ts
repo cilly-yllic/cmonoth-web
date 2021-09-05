@@ -5,13 +5,11 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { MatIconModule } from '@angular/material/icon'
 import { DeleteComponent } from './delete.component'
 
-import { AlternativeModule } from '~dialogs/alternative/alternative.module'
-import { TreesService } from '~services/db/trees.service'
+import { AlternativeModule } from '~dialogs'
 
 @NgModule({
   declarations: [DeleteComponent],
   imports: [CommonModule, MatButtonModule, MatDialogModule, MatIconModule, AlternativeModule],
   exports: [DeleteComponent],
-  providers: [TreesService],
 })
 export class DeleteModule {}

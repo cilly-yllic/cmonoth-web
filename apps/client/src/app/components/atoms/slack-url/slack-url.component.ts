@@ -37,7 +37,7 @@ export class SlackUrlComponent extends SubscriptionsDirective implements OnInit,
   onChange: any = () => { }
   onTouched: any = () => { }
 
-  constructor(private snackBar: MatSnackBar, private sUSv: SlackUrlService) {
+  constructor(private snackBar: MatSnackBar, private slackUrlSv: SlackUrlService) {
     super()
   }
 
@@ -57,7 +57,7 @@ export class SlackUrlComponent extends SubscriptionsDirective implements OnInit,
   private test(): Subscription {
     return this.sbj.asObservable()
       .pipe(
-        mergeMap(({ url, target }) => this.sUSv.check(url, target))
+        mergeMap(({ url, target }) => this.slackUrlSv.check(url, target))
       )
       .subscribe(
         () => {

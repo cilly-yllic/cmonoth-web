@@ -15,7 +15,7 @@ import { SubscriptionsDirective } from '~extends/directives/subscriptions.direct
 export class NavigationLoadingComponent extends SubscriptionsDirective {
   loading = false
 
-  constructor(private router: Router, private navigationLoadingService: NavigationLoadingService) {
+  constructor(private router: Router, private navigationLoadingSv: NavigationLoadingService) {
     super()
     const subscription = router.events.subscribe((event: RouterEvent) => {
       this.navigationInterceptor(event)
@@ -40,6 +40,6 @@ export class NavigationLoadingComponent extends SubscriptionsDirective {
   }
 
   get lock(): boolean {
-    return this.navigationLoadingService.isLocked
+    return this.navigationLoadingSv.isLocked
   }
 }

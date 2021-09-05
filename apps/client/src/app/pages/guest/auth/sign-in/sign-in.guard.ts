@@ -12,7 +12,7 @@ import { Auth } from '~types/auth'
   providedIn: 'root'
 })
 export class SignInGuard implements CanActivate {
-  constructor(private authSv: AuthService, private rSv: RouterService, private clientsSv: ClientsService) {}
+  constructor(private authSv: AuthService, private routerSv: RouterService, private clientsSv: ClientsService) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.check()
@@ -24,7 +24,7 @@ export class SignInGuard implements CanActivate {
         if (!client) {
           return true
         }
-        this.rSv.navigate([NAVIGATES.AFTER_SIGN_IN(client.name)])
+        this.routerSv.navigate([NAVIGATES.AFTER_SIGN_IN(client.name)])
         return false
       })
     )

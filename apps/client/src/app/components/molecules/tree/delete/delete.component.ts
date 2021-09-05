@@ -1,60 +1,63 @@
-import { Component, Input, OnInit } from '@angular/core'
-import { Observable } from 'rxjs'
-import { map, flatMap, tap } from 'rxjs/operators'
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core'
+import { Observable, Subject, of, combineLatest } from 'rxjs'
+import { debounceTime, map, mergeMap, switchMap, tap } from 'rxjs/operators'
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
-import { SimpleSubscriptionsDirective } from '~extends/components/simple-subscriptions.directive'
+import { SubscriptionsDirective } from '~extends/directives/subscriptions.directive'
 
 import { BehaviorSubjectClass } from '~utils/behavior-subject.class'
-import { TreesService, Get } from '~services/db/trees.service'
-import { RouterService } from '~core/router.service'
-import { Trees, Tree } from '~types/trees'
-import { Project } from '~types/projects'
+import { TreesService, EachQuery } from '~services/db/client/project/trees.service'
+import { RouterService } from '~services/router.service'
+import { Project } from '~types/db/client/projects'
+import { Trees, Tree } from '~types/db/client/project/trees'
 
-import { setConfig } from '~utils/dialog'
+import { AlternativeComponent, setConfig } from '~dialogs'
 
-import { AlternativeComponent } from '~dialogs/alternative/alternative.component'
+interface Submit {
+  projectId: Project['id']
+  treeId: Tree['id']
+}
 
 @Component({
   selector: 'app-m-tree-delete',
   templateUrl: './delete.component.html',
   styleUrls: ['./delete.component.scss'],
 })
-export class DeleteComponent extends SimpleSubscriptionsDirective {
-  subjectClass = new BehaviorSubjectClass<Get>()
+export class DeleteComponent extends SubscriptionsDirective implements OnInit, OnChanges {
+  subjectClass = new BehaviorSubjectClass<EachQuery>()
+  submitSbj = new Subject<Submit>()
 
-  _projectId: Project['id'] = ''
-  @Input()
-  set projectId(projectId: Project['id']) {
-    this._projectId = projectId
-    this.next()
-  }
-  get projectId(): Project['id'] {
-    return this._projectId
-  }
+  @Input() projectId: Project['id'] = ''
+  @Input() treeId: Tree['id'] = ''
 
-  _treeId: Tree['id'] = ''
-  @Input()
-  set treeId(treeId: Tree['id']) {
-    this._treeId = treeId
-    this.next()
-  }
-  get treeId(): Tree['id'] {
-    return this._treeId
-  }
-
+  updating = false
   tree$: Observable<Tree | null> = this.subjectClass.observable.pipe(
-    flatMap(({ projectId, treeId }) => this.tsSv.getOne(projectId, treeId))
+    mergeMap(({ projectId, treeId }) => this.treesSv.getOne(projectId, treeId))
   )
 
-  constructor(private dialog: MatDialog, private tsSv: TreesService, private rSv: RouterService) {
+  constructor(private dialog: MatDialog, private treesSv: TreesService, private routerSv: RouterService) {
     super()
   }
 
-  next() {
-    if (!this.projectId || !this.treeId) {
+  ngOnInit(): void {
+    this.subscriptions.add(
+      this.submitSbj.asObservable()
+        .pipe(
+          debounceTime(300),
+          switchMap(({ projectId, treeId }) => combineLatest([of(projectId), this.treesSv.delete(projectId, treeId)])),
+          mergeMap(([projectId, _]) => this.routerSv.clientNavigate(['projects', projectId]))
+        )
+        .subscribe(
+          () => (this.updating = false),
+          () => (this.updating = false)
+        )
+    )
+  }
+
+  ngOnChanges({ projectId, treeId }: SimpleChanges): void {
+    if (!projectId.currentValue || !treeId.currentValue) {
       return
     }
-    this.subjectClass.next({ projectId: this.projectId, treeId: this.treeId })
+    this.subjectClass.next({ projectId: projectId.currentValue, treeId: treeId.currentValue })
   }
 
   showDialog(options?: MatDialogConfig): void {
@@ -69,10 +72,10 @@ export class DeleteComponent extends SimpleSubscriptionsDirective {
   }
 
   private __onDeleteProject(): void {
-    const subscription = this.tsSv
-      .delete(this.projectId, this.treeId)
-      .pipe(flatMap(() => this.rSv.clientNavigate(['projects', this.projectId])))
-      .subscribe()
-    this.subscriptions.add(subscription)
+    this.updating = true
+    this.submitSbj.next({
+      projectId: this.projectId,
+      treeId: this.treeId,
+    })
   }
 }

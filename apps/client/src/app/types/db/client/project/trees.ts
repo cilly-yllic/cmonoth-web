@@ -5,6 +5,7 @@ import { Project } from '~types/db/client/projects'
 export const COLLECTION_NAME = 'trees'
 
 interface Base {
+  taskCount: number
   createdUserId: User['id']
   name: string
   description: string
@@ -25,6 +26,7 @@ export interface Tree extends Base, Get {
 }
 
 export interface AllowUpdateTree {
+  taskCount?: FieldValue
   name?: string
   description?: string
   isOpen?: boolean

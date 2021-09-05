@@ -23,14 +23,14 @@ export class SendEmailLinkComponent extends SubscriptionsDirective implements On
 
   isGuest$ = this.authSv.isGuest()
 
-  constructor(private authSv: AuthService, private cSUSv: CanSignUpService) {
+  constructor(private authSv: AuthService, private canSignUpSv: CanSignUpService) {
     super()
   }
 
   ngOnInit(): void {
     this.subscriptions.add(
       this.submitSbj.asObservable().pipe(
-        mergeMap(({ email }) => this.cSUSv.run(email)),
+        mergeMap(({ email }) => this.canSignUpSv.run(email)),
         mergeMap((v) => (v ? this.authSv.sendSignInLinkToEmail(this.email.value) : of(null)))
       )
         .subscribe(

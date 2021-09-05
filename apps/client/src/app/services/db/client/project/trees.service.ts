@@ -12,9 +12,14 @@ import {
   Projects, UpdateProject
 } from '~types/db/client/projects'
 import { CreateTree, Tree, Trees, AllowUpdateTree, UpdateTree, COLLECTION_NAME } from '~types/db/client/project/trees'
-import { getTimestamp, now, snapshotChanges, IsFieldOption } from '~utils/firebase/firestore'
+import { getTimestamp, now, snapshotChanges, IsFieldOption, getIncrement } from '~utils/firebase/firestore'
 import { COLORS } from '~configs'
 import { Client } from "~types/db/clients";
+
+export interface EachQuery {
+  projectId: Project['id']
+  treeId: Tree['id']
+}
 
 const SNAPSHOT_OPTION: IsFieldOption = { idField: 'id', skipCollectionName: COLLECTION_NAME }
 
@@ -39,6 +44,7 @@ export class TreesService extends ClientsService {
         }
         const data: CreateTree = {
           createdUserId: userId,
+          taskCount: 1,
           name,
           description: '',
           isOpen: true,
@@ -85,7 +91,7 @@ export class TreesService extends ClientsService {
     )
   }
 
-  put(projectId: Project['id'], teeId: Tree['id'], param: AllowUpdateTree): Observable<UpdateTree> {
+  put(projectId: Project['id'], treeId: Tree['id'], param: AllowUpdateTree): Observable<UpdateTree> {
     return this.getCurrentClientId().pipe(
       mergeMap((clientId) => {
         if (!clientId) {
@@ -95,9 +101,24 @@ export class TreesService extends ClientsService {
           ...param,
           updatedAt: getTimestamp(),
         }
-        return from(
-          this.getSubCollection<UpdateTree>(clientId, projectId).doc<UpdateTree>(projectId)
-            .update(updates)).pipe(map(() => ({ ...updates, id: teeId, projectId, updatedAt: now() })))
+        return from(this.getSubCollection<UpdateTree>(clientId, projectId).doc(treeId).update(updates)).pipe(
+          map(() =>  ({ ...updates, id: treeId, projectId, updatedAt: now() }))
+        )
+      })
+    )
+  }
+
+  incrementTaskCount(projectId: Project['id'], treeId: Tree['id']): Observable<UpdateTree> {
+    return this.put(projectId, treeId, { taskCount: getIncrement(1) })
+  }
+
+  delete(projectId: Project['id'], teeId: Tree['id']) {
+    return this.getCurrentClientId().pipe(
+      mergeMap((clientId) => {
+        if (!clientId) {
+          return throwError(`clientId is ${typeof clientId}`)
+        }
+        return from(this.getSubCollection(clientId, projectId).doc(teeId).delete())
       })
     )
   }

@@ -1,84 +1,86 @@
-import { Component, Input, OnInit } from '@angular/core'
-import { FormGroup } from '@angular/forms'
-import { Observable } from 'rxjs'
-import { map, flatMap, tap } from 'rxjs/operators'
-import { SimpleSubscriptionsDirective } from '~extends/components/simple-subscriptions.directive'
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { Observable, Subject } from 'rxjs'
+import { map, mergeMap, tap, debounceTime, switchMap } from 'rxjs/operators'
+import { SubscriptionsDirective } from '~extends/directives/subscriptions.directive'
 
 import { BehaviorSubjectClass } from '~utils/behavior-subject.class'
-import { ProjectsService } from '~services/db/projects.service'
-import { TreesService, Get } from '~services/db/trees.service'
-import { Trees, Tree } from '~types/trees'
-import { Project } from '~types/projects'
-import { getFormControl, FormControl } from '~utils/forms/control'
+import { ProjectsService } from '~services/db/client/projects.service'
+import { TreesService, EachQuery } from '~services/db/client/project/trees.service'
+import { Trees, Tree } from '~types/db/client/project/trees'
+import { Project } from '~types/db/client/projects'
 import { isDarker } from '~utils/color'
+
+interface Submit {
+  projectId: Project['id']
+  treeId: Tree['id']
+  param: {
+    name: Tree['name']
+  }
+}
 
 @Component({
   selector: 'app-m-tree-name',
   templateUrl: './name.component.html',
   styleUrls: ['./name.component.scss'],
 })
-export class NameComponent extends SimpleSubscriptionsDirective {
-  subjectClass = new BehaviorSubjectClass<Get>()
+export class NameComponent extends SubscriptionsDirective implements OnInit, OnChanges {
+  subjectClass = new BehaviorSubjectClass<EachQuery>()
+  submitSbj = new Subject<Submit>()
 
-  name: FormControl = getFormControl('', { required: true })
+  name: FormControl = new FormControl('', [Validators.required])
   form: FormGroup = new FormGroup({ name: this.name })
 
   isEditMode = false
   loading = false
-  _projectId: Project['id'] = ''
-  @Input()
-  set projectId(projectId: Project['id']) {
-    this._projectId = projectId
-    this.next()
-  }
-  get projectId(): Project['id'] {
-    return this._projectId
-  }
-
-  _treeId: Tree['id'] = ''
-  @Input()
-  set treeId(treeId: Tree['id']) {
-    this._treeId = treeId
-    this.next()
-  }
-  get treeId(): Tree['id'] {
-    return this._treeId
-  }
+  @Input() projectId: Project['id'] = ''
+  @Input() treeId: Tree['id'] = ''
 
   isDark$: Observable<boolean> = this.subjectClass.observable.pipe(
-    flatMap(({ projectId }) => this.psSv.getOne(projectId)),
+    mergeMap(({ projectId }) => this.projectsSv.getOne(projectId)),
     map((project) => (project ? isDarker(project.color) : false))
   )
   name$: Observable<Tree['name']> = this.subjectClass.observable.pipe(
-    flatMap(({ projectId, treeId }) => this.tsSv.getOne(projectId, treeId)),
+    mergeMap(({ projectId, treeId }) => this.treesSv.getOne(projectId, treeId)),
     map((tree) => tree?.name || ''),
     tap((name) => this.name.setValue(name))
   )
 
-  constructor(private psSv: ProjectsService, private tsSv: TreesService) {
+  constructor(private projectsSv: ProjectsService, private treesSv: TreesService) {
     super()
   }
 
-  next() {
-    if (!this.projectId || !this.treeId) {
+  ngOnInit(): void {
+    this.subscriptions.add(
+      this.submitSbj.asObservable()
+        .pipe(
+          debounceTime(300),
+          switchMap(({ projectId, treeId, param }) => this.treesSv.put(projectId, treeId, param))
+        )
+        .subscribe(
+          () => {
+            this.loading = false
+            this.isEditMode = false
+          },
+          () => (this.loading = false)
+        )
+    )
+  }
+
+  ngOnChanges({ projectId, treeId }: SimpleChanges): void {
+    if (!projectId.currentValue || !treeId.currentValue) {
       return
     }
-    this.subjectClass.next({ projectId: this.projectId, treeId: this.treeId })
+    this.subjectClass.next({ projectId: projectId.currentValue, treeId: treeId.currentValue })
   }
 
   onSubmit(e: Event) {
     e.stopPropagation()
     this.loading = true
-    const subscription = this.tsSv
-      .put(this.projectId, this.treeId, { name: this.name.value })
-      .pipe(tap((v) => console.log('onClick', v)))
-      .subscribe(
-        () => {
-          this.loading = false
-          this.isEditMode = false
-        },
-        () => (this.loading = false)
-      )
-    this.subscriptions.add(subscription)
+    this.submitSbj.next({
+      projectId: this.projectId,
+      treeId: this.treeId,
+      param: this.form.value
+    })
   }
 }

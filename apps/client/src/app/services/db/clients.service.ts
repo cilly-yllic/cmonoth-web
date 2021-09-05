@@ -60,6 +60,15 @@ export class ClientsService extends FirestoreService {
       )
   }
 
+  getCurrentClientName(): Observable<Client['name']> {
+    return this.getCurrentClient()
+      .pipe(
+        skipWhile((client) => !client),
+        first(),
+        map((client) => client.name)
+      )
+  }
+
   getCurrentClientId(): Observable<Client['id']> {
     return this.getCurrentClient()
       .pipe(

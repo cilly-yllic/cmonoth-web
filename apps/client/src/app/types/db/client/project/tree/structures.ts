@@ -1,8 +1,8 @@
 import { Task } from '~types/db/client/project/tree/tasks'
 
 export interface StructureRowTask {
-  id: Task['id']
-  children: Task['id'][]
+  num: Task['incrementNum']
+  children: Task['incrementNum'][]
 }
 
 export type StructureRow = StructureRowTask[]

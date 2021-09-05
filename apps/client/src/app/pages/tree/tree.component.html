@@ -1,0 +1,54 @@
+<div
+  style="width: 100%; height: 100vh; overflow-y: scroll; display: flex; flex-direction: column;"
+  (mousedown)="onStopPropagation($event)"
+  (mouseup)="onStopPropagation($event)"
+>
+  <div *ngIf="project$ | async as project" class="ui-page-header ui-header-primary is-tree-header" [style.background-color]="project.color">
+    <div class="d-flex justify-content-between mb-4">
+      <app-m-tree-open [projectId]="projectId" [treeId]="treeId"></app-m-tree-open>
+      <app-m-tree-delete [projectId]="projectId" [treeId]="treeId"></app-m-tree-delete>
+    </div>
+    <div class="ui-header-title" [style.border-bottom-color]="project.color">
+      <div
+        class="ui-area-avatar d-inline-block align-middle rounded-circle"
+        [style.background-image]="'url(' + project.iconPath + ')'"
+      ></div>
+      <ng-container *ngIf="tree$ | async as tree">
+        <!--          TODO username / project name-->
+<!--        <app-a-breadcrumbs></app-a-breadcrumbs>-->
+      </ng-container>
+      <h1>
+        <app-m-tree-name [projectId]="projectId" [treeId]="treeId"></app-m-tree-name>
+      </h1>
+    </div>
+  </div>
+  <div class="ui-main-inner is-tree-main">
+    <div class="mr-auto p-tree">
+      <app-o-tasks [projectId]="projectId" [treeId]="treeId"></app-o-tasks>
+    </div>
+    <ng-container *ngIf="menuType$ | async as menuType; else tasksMenuButtonTemplate">
+      <div class="ui-area-task-panel" [@rightToLeftAnimation]="'state'" [style.width.px]="width">
+        <ng-container *ngTemplateOutlet="tasksMenuTemplate; context: { $implicit: menuType }"></ng-container>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #tasksMenuButtonTemplate>
+  <app-m-tasks-menu-buttons class="ui-area-task-menu-button"></app-m-tasks-menu-buttons>
+</ng-template>
+<ng-template #tasksMenuTemplate let-type>
+  <!-- TODO:uniqここを左端にabsoluteで配置する -->
+  <app-a-area-mover [type]="'right'" [size]="{ x: width }" (moved)="width = $event.x || 0"></app-a-area-mover>
+  <div [ngSwitch]="type" class="ui-area-task-panel-inner d-flex h-100 flex-column">
+    <app-m-tasks-menu-filtering *ngSwitchCase="'filter'"></app-m-tasks-menu-filtering>
+    <!--<app-m-tasks-menu-group *ngSwitchCase="'group'" (closed)="tasksMenu = ''"></app-m-tasks-menu-group>-->
+    <app-o-task
+      *ngSwitchCase="'task'"
+      [projectId]="projectId"
+      [treeId]="treeId"
+      [taskId]="taskId$ | async"
+      class="d-flex flex-auto flex-column"
+    ></app-o-task>
+  </div>
+</ng-template>

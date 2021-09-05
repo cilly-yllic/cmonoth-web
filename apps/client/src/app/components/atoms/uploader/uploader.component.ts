@@ -29,7 +29,7 @@ export class UploaderComponent extends SubscriptionsDirective implements OnInit 
     mergeMap((files) => compressFiles(files)),
     map((files) =>
       Array.from(files as ImageFiles).map((file) => {
-        file.preview = this.fSv.preview(file as File, this.previewType)
+        file.preview = this.fileSv.preview(file as File, this.previewType)
         return file
       })
     )
@@ -39,7 +39,7 @@ export class UploaderComponent extends SubscriptionsDirective implements OnInit 
   percentageChanges$: Observable<number | null> = of(null)
   removing = false
 
-  constructor(private sSv: StorageService, private fSv: FileService) {
+  constructor(private storageSv: StorageService, private fileSv: FileService) {
     super()
   }
 
@@ -65,7 +65,7 @@ export class UploaderComponent extends SubscriptionsDirective implements OnInit 
     const count = this.files.length
     const tasks = this.files.map((file, i) => {
       const filename = count === 1 || !name ? name : `${name}_${i + 1}`
-      return this.sSv.upload(file, path, { filename })
+      return this.storageSv.upload(file, path, { filename })
     })
     if (!tasks.length) {
       return throwError('upload file empty')

@@ -5,7 +5,7 @@
 <ng-template #editTemplate>
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)" class="form-inline d-inline">
     <input type="text" [formControl]="name" name="Name" class="form-control mr-1" />
-    <button type="submit" class="btn btn-outline-primary mr-1" [disabled]="form.invalid">{{ 'common.button.update' | translate }}</button>
+    <button type="submit" class="btn btn-outline-primary mr-1" [disabled]="form.invalid">更新</button>
     <button type="button" class="btn btn-outline-secondary" (click)="isEditMode = false">Cancel</button>
   </form>
 </ng-template>

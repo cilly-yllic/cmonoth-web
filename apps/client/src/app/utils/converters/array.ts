@@ -4,9 +4,9 @@ import { getDate, isAfter, isBefore, getFormat } from '~utils/date'
 
 type Key = string | number
 
-// export type Map<T> = {
-//   [key in Key]: T
-// }
+export type ArrayMap<T> = {
+  [key in Key]: T
+}
 //
 // export const getTargetMap = <T extends { [key: string]: any }>(list: T[], target: string): Map<T> =>
 //   list.reduce((acc, current) => {

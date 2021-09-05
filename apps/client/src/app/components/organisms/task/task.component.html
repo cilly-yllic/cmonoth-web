@@ -1,0 +1,54 @@
+<div class="header o-task">
+  <div class="d-flex justify-content-between">
+    <div>
+      <app-m-task-open [projectId]="projectId" [treeId]="treeId" [taskId]="taskId" [isOpen]="isOpen$ | async"></app-m-task-open>
+      <h3><app-m-task-name [projectId]="projectId" [treeId]="treeId" [taskId]="taskId" [name]="name$ | async"></app-m-task-name></h3>
+    </div>
+    <button mat-icon-button (click)="onClose()" class="ml-5">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div class="description">
+    <!--    <app-m-task-description [taskId]="_taskId" [description]="description$ | async"></app-m-task-description>-->
+  </div>
+</div>
+<div class="body flex-auto">
+  <div class="assign">
+    <div class="d-flex justify-content-between">
+      <h4>Assignees</h4>
+      <!--      <app-m-task-assign [taskId]="_taskId"></app-m-task-assign>-->
+    </div>
+    <!--    <app-m-task-assign-users [taskId]="_taskId"></app-m-task-assign-users>-->
+    <!--<app-m-task-labels [taskPrimaryId]="id$ | async" [taskId]="_taskId"></app-m-task-labels>-->
+  </div>
+  <div class="status">
+    <h4>Status</h4>
+    <!--    <app-m-task-progress [taskId]="_taskId" [status]="progressStatus$ | async"></app-m-task-progress>-->
+  </div>
+
+  <div class="due-date">
+    <h4>Due date</h4>
+    <!--    <app-m-task-deadline [taskId]="_taskId" [deadline]="deadline$ | async"></app-m-task-deadline>-->
+    <!--Materialの使用上カレンダー表示にinputエリアが必要な為、そうなると表示が二箇所になってしまうから一旦コメントアウトしました by yoshi-->
+    <!--{{ task?.deadline | timezone: 'YYYY/MM/DD HH:mm:ss' }}-->
+    <!--<hr>-->
+    <!--<app-m-task-labels-set [taskId]="_taskId"></app-m-task-labels-set>-->
+  </div>
+
+  <div class="related-task">
+    <h4>related task</h4>
+    <!--    <app-m-task-relation-parents [taskId]="_taskId"></app-m-task-relation-parents>-->
+    <!--    <app-m-task-relation-children [taskId]="_taskId"></app-m-task-relation-children>-->
+  </div>
+
+  <!-- ↓コメントリスト -->
+  <div class="comment-list">
+    <h4>Comment</h4>
+    <!--    <app-m-task-comments [taskId]="_taskId"></app-m-task-comments>-->
+  </div>
+
+  <!-- ↓コメントフォーム -->
+  <div class="comment-form">
+    <!--    <app-m-task-comment [taskId]="_taskId"></app-m-task-comment>-->
+  </div>
+</div>

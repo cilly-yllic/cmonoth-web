@@ -7,6 +7,6 @@ import { ClientService } from '~services/db/client.service'
   styleUrls: ['./trees.component.scss'],
 })
 export class TreesComponent {
-  constructor(private cSv: ClientService) {}
-  clientId$ = this.cSv.clientId$
+  constructor(private clientSv: ClientService) {}
+  clientId$ = this.clientSv.clientId$
 }

@@ -1,0 +1,13 @@
+<button
+  *ngIf="current"
+  [style.top.px]="current.top"
+  [style.left.px]="current.left"
+  type="button"
+  mat-mini-fab
+  class="ui-btn-line-plus"
+  (click)="onClick($event, current)"
+  (mouseenter)="onEnter(current)"
+  (mouseleave)="onLeave()"
+>
+  <mat-icon>add</mat-icon>
+</button>

@@ -33,6 +33,16 @@ import {
 } from "~types/db/client/project/tree/tasks";
 import { Structure } from "~types/db/client/project/tree/structures";
 
+export interface EachQuery {
+  projectId: Project['id']
+  treeId: Tree['id']
+  taskId: Task['id']
+}
+
+export interface ListQuery {
+  projectId: Project['id']
+  treeId: Tree['id']
+}
 
 export interface TasksAndStructure {
   tasks: Task[]
@@ -56,7 +66,35 @@ export class TasksService extends ClientsService {
       .collection<T>(COLLECTION_NAME, query)
   }
 
-  post(name: string, projectId: Project['id'], treeId: Tree['id'], taskId: Task['id']): Observable<Task> {
+  // post(name: string, projectId: Project['id'], treeId: Tree['id'], taskId: Task['id']): Observable<Task> {
+  //   return this.getClientIdAndUserId().pipe(
+  //     mergeMap(({ clientId, userId }) => {
+  //       if (!clientId) {
+  //         return throwError(`clientId is ${typeof clientId}`)
+  //       }
+  //       if (!userId) {
+  //         return throwError(`userId is ${typeof userId}`)
+  //       }
+  //       const data: CreateTask = {
+  //         createdUserId: userId,
+  //         name,
+  //         description: '',
+  //         deadline: null,
+  //         progressStatus: '',
+  //         isOpen: true,
+  //         assignUsers: [],
+  //         labels: [],
+  //         createdAt: getTimestamp(),
+  //       }
+  //       const result: Task = { ...data, id: taskId, projectId, treeId, createdAt: now() }
+  //       return from(this.getSubCollection<CreateTask>(clientId, projectId, treeId).doc(taskId).set(data)).pipe(
+  //         map((res) => result)
+  //       )
+  //     })
+  //   )
+  // }
+
+  post(name: string, projectId: Project['id'], treeId: Tree['id'], incrementNum: Task['incrementNum']): Observable<Task> {
     return this.getClientIdAndUserId().pipe(
       mergeMap(({ clientId, userId }) => {
         if (!clientId) {
@@ -67,6 +105,7 @@ export class TasksService extends ClientsService {
         }
         const data: CreateTask = {
           createdUserId: userId,
+          incrementNum,
           name,
           description: '',
           deadline: null,
@@ -76,9 +115,8 @@ export class TasksService extends ClientsService {
           labels: [],
           createdAt: getTimestamp(),
         }
-        const result: Task = { ...data, id: taskId, projectId, treeId, createdAt: now() }
-        return from(this.getSubCollection<CreateTask>(clientId, projectId, treeId).doc(taskId).set(data)).pipe(
-          map((res) => result)
+        return from(this.getSubCollection<CreateTask>(clientId, projectId, treeId).add(data)).pipe(
+          map((res) => ({ ...data, id: res.id, projectId, treeId, createdAt: now() }))
         )
       })
     )
@@ -130,18 +168,29 @@ export class TasksService extends ClientsService {
     )
   }
 
-  getOne(projectId: Project['id'], treeId: Tree['id'], taskId: Task['id']): Observable<Task | null> {
+  getOne<T = Task>(projectId: Project['id'], treeId: Tree['id'], taskId: Task['id']): Observable<T | null> {
     return this.getCurrentClientId().pipe(
       mergeMap((clientId) => {
         if (!clientId) {
           return throwError(`id is ${typeof clientId}`)
         }
         return this.getSubCollection<Tree>(clientId, projectId, treeId)
-          .doc<Task>(taskId)
+          .doc<T>(taskId)
           .valueChanges({ idField: 'id' })
           .pipe(
             map((v) => (v ? { ...v, clientId, projectId, treeId, id: taskId } : null))
           )
+      })
+    )
+  }
+
+  getOnesStructure(projectId: Project['id'], treeId: Tree['id']): Observable<Structure> {
+    return this.getOne<TaskStructure>(projectId, treeId, 'structure').pipe(
+      mergeMap((res) => {
+        if (!res) {
+          return throwError(`res is ${typeof res}`)
+        }
+        return of(JSON.parse(res.json) as Structure)
       })
     )
   }

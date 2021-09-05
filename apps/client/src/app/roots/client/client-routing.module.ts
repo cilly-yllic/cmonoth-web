@@ -8,9 +8,9 @@ import { ProjectsComponent } from '~pages/projects/projects.component'
 import { ProjectGuard } from '~pages/project/project.guard'
 import { ProjectComponent } from '~pages/project/project.component'
 import { TreesComponent } from '~pages/trees/trees.component'
-// import { TreeComponent } from '~pages/tree/tree.component'
+import { TreeComponent } from '~pages/tree/tree.component'
 // import { TreesService } from '~services/db/trees.service'
-// import { TreeGuard } from '~pages/tree/tree.guard'
+import { TreeGuard } from '~pages/tree/tree.guard'
 
 const routes: Routes = [
   {
@@ -33,7 +33,7 @@ const routes: Routes = [
       { path: 'projects', pathMatch: 'full', component: ProjectsComponent },
       { path: 'projects/:projectId', component: ProjectComponent, canActivate: [ProjectGuard] },
       { path: 'trees', component: TreesComponent },
-    //   { path: 'trees/:projectId/:treeId', component: TreeComponent, canActivate: [TreeGuard] },
+      { path: 'trees/:projectId/:treeId', component: TreeComponent, canActivate: [TreeGuard] },
       { path: '**', component: DashboardComponent },
     ],
   },

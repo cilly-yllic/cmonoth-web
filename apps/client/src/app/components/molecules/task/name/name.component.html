@@ -1,0 +1,21 @@
+<div *ngIf="!editMode; else editTemplate">
+  <div *ngIf="!!backup">
+    <div (click)="editMode = true" class="mt-3 task_name">{{ backup }}</div>
+  </div>
+</div>
+
+<ng-template #editTemplate>
+  <form [formGroup]="form" (ngSubmit)="changeName($event)">
+    <mat-form-field>
+      <input matInput placeholder="task name" [formControl]="_name" name="Name" />
+    </mat-form-field>
+    <div>
+      <button mat-stroked-button type="button" (click)="onCancel()">キャンセル</button>
+      <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid || _name.value === backup">
+        更新する
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+<app-a-spinner [spinning]="updating" [diameter]="20"></app-a-spinner>

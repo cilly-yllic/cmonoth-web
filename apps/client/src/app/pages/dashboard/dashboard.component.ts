@@ -7,6 +7,6 @@ import { ClientService } from '~services/db/client.service'
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  clientName$ = this.cSv.clientName$
-  constructor(private cSv: ClientService) {}
+  clientName$ = this.clientSv.clientName$
+  constructor(private clientSv: ClientService) {}
 }

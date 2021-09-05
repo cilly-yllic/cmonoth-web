@@ -11,11 +11,11 @@ import { InputComponent, setConfig } from '~dialogs'
   styleUrls: ['./create.component.scss'],
 })
 export class CreateComponent {
-  constructor(private dialog: MatDialog, private pSv: ProjectsService) {}
+  constructor(private dialog: MatDialog, private projectsSv: ProjectsService) {}
 
   showDialog(options?: MatDialogConfig) {
     const dialogConfig = setConfig(options)
-    dialogConfig.data.service = this.pSv
+    dialogConfig.data.service = this.projectsSv
     dialogConfig.data.method = 'post'
     this.dialog.open(InputComponent, dialogConfig)
   }

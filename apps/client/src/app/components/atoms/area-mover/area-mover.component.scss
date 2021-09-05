@@ -1,0 +1,20 @@
+.ui-line-resize {
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  &:hover {
+    cursor: col-resize;
+    .ui-btn-resize {
+      background-color: #e5eaec;
+    }
+  }
+  .ui-btn-resize {
+    margin-left: 6px;
+    height: 50px;
+    width: 8px;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0);
+  }
+}

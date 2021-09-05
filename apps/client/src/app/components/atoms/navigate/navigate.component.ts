@@ -14,10 +14,10 @@ export class NavigateComponent {
   @Input() class = ''
   @Input() style = {}
 
-  constructor(private router: RouterService) {}
+  constructor(private routerSv: RouterService) {}
 
   onClick(event: Event): void {
     event.preventDefault()
-    this.router.navigate([this.path])
+    this.routerSv.navigate([this.path])
   }
 }

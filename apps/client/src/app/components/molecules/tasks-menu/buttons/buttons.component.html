@@ -1,0 +1,6 @@
+<div>
+  <button mat-flat-button (click)="onOpen('filter')">
+    <mat-icon>highlight</mat-icon>タスクのハイライト<span *ngIf="isFiltering$ | async">を修正する</span>
+  </button>
+  <button mat-flat-button *ngIf="isFiltering$ | async" (click)="onClear()">解除する</button>
+</div>

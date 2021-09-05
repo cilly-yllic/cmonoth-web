@@ -1,0 +1,19 @@
+.div_border {
+  // $border-radius を使いたい
+  -webkit-border-radius: 0.2rem;
+  -moz-border-radius: 0.2rem;
+  border-radius: 0.2rem;
+  padding: 1rem;
+  background: #fff;
+}
+.div_border:hover {
+  box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  p {
+    color: #000;
+  }
+}
+
+.is-new {
+  box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.4);
+}

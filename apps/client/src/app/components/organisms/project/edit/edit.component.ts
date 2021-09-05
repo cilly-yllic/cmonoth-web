@@ -38,7 +38,7 @@ export class EditComponent extends SubscriptionsDirective implements OnInit, OnC
 
   isOrg = false
   isOrg$ = this.clientSv.isOrg$.pipe(tap((isOrg) => this.isOrg = isOrg))
-  project$ = this.sbj.observable.pipe(mergeMap((projectId) => this.psSv.getOne(projectId)))
+  project$ = this.sbj.observable.pipe(mergeMap((projectId) => this.projectsSv.getOne(projectId)))
   iconUrl$ = this.project$.pipe(map((project) => project?.iconPath))
 
   name: FormControl = new FormControl('', [Validators.required])
@@ -52,7 +52,7 @@ export class EditComponent extends SubscriptionsDirective implements OnInit, OnC
 
   submitSbj = new Subject<Submit>()
 
-  constructor(private clientSv: ClientService, private psSv: ProjectsService) {
+  constructor(private clientSv: ClientService, private projectsSv: ProjectsService) {
     super()
   }
 
@@ -91,7 +91,7 @@ export class EditComponent extends SubscriptionsDirective implements OnInit, OnC
     this.subscriptions.add(
       this.submitSbj.asObservable()
         .pipe(
-          mergeMap(({ projectId, value }) => this.psSv.put(projectId, value))
+          mergeMap(({ projectId, value }) => this.projectsSv.put(projectId, value))
         )
         .subscribe(
           () => {

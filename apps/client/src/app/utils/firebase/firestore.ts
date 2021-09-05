@@ -10,6 +10,7 @@ import { Task } from '~types/db/client/project/tree/tasks'
 
 export const getDocumentId = () => firebase.firestore.FieldPath.documentId()
 export const getTimestamp = () => firebase.firestore.FieldValue.serverTimestamp()
+export const getIncrement = (num: number) => firebase.firestore.FieldValue.increment(num)
 export const getGeoPoint = (latitude: number, longitude: number) => new firebase.firestore.GeoPoint(latitude, longitude)
 export const now = () => firebase.firestore.Timestamp.now()
 export const fromDate = (date: Date) => firebase.firestore.Timestamp.fromDate(date)

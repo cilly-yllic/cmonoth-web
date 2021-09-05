@@ -3,14 +3,13 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } fro
 import { Observable, of } from 'rxjs'
 import { mergeMap } from 'rxjs/operators'
 import { RouterService } from '~services/router.service'
-import { ClientService } from '~services/db/client.service'
 import { ProjectsService } from '~services/db/client/projects.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProjectGuard implements CanActivate {
-  constructor(private routerSv: RouterService, private clientService: ClientService, private projectsSv: ProjectsService) {}
+  constructor(private routerSv: RouterService, private projectsSv: ProjectsService) {}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
