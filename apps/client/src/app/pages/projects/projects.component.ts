@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core'
-import { Observable } from 'rxjs'
-import { ClientService } from '~services/db/client.service'
-import { Client } from '~types/db/clients'
+import { Component } from '@angular/core'
+import { getBreadcrumb, Breadcrumb } from '~atoms/breadcrumb'
 
 @Component({
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
 })
-export class ProjectsComponent implements OnInit {
-  name$: Observable<Client['id']> = this.clientSv.clientId$
-  constructor(private clientSv: ClientService) {}
-
-  ngOnInit(): void {}
+export class ProjectsComponent {
+  breadcrumbs: Breadcrumb[] = getBreadcrumb('projects')
 }

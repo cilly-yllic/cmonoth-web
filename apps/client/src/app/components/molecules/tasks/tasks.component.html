@@ -1,7 +1,8 @@
 <div *ngFor="let task of tasks" class="m-tasks">
+<!--  TODO TO uniq style.width.px style.height.pxが + 32されてしまう-->
   <div
-    [style.width.px]="task.width"
-    [style.height.px]="task.height"
+    [style.width.px]="task.width - 32"
+    [style.height.px]="task.height - 32"
     [ngClass]="checkTaskStyle(task.id)"
     [style.position]="'absolute'"
     [style.top.px]="task.top"

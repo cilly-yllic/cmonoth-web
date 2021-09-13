@@ -48,12 +48,12 @@ export class CreateComponent extends SubscriptionsDirective implements OnInit {
         .pipe(
           debounceTime(300),
           switchMap(({ projectId, treeId, params, position }) => combineLatest([
-            this.treesSv.getOne(projectId, treeId),
-            this.tasksSv.getOnesStructure(projectId, treeId),
+            this.treesSv.getOne(projectId, treeId).pipe(first()),
+            this.tasksSv.getOnesStructure(projectId, treeId).pipe(first()),
             of(params),
             of(position)
           ])),
-          first(),
+          // first(),
           mergeMap(([tree, structure, { name }, position]) => {
             if (!tree) {
               return throwError(Error('tree is null'))
@@ -69,7 +69,9 @@ export class CreateComponent extends SubscriptionsDirective implements OnInit {
           map(([{ incrementNum, structure, position }]) => addMiddle(structure, position.parent.incrementNum, incrementNum, position.child?.incrementNum)),
           mergeMap((structure) => this.tasksSv.postOrUpdateStructure(structure, this.projectId, this.treeId))
         )
-        .subscribe()
+        .subscribe(
+          () => this.newTaskSv.complete()
+        )
     )
   }
 

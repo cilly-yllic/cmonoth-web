@@ -21,6 +21,10 @@ export class BehaviorSubjectClass<T> {
     this.s.next(v)
   }
 
+  public complete(): void {
+    this.s.complete()
+  }
+
   get snapshot(): T | DEFAULT {
     return this.s.getValue()
   }

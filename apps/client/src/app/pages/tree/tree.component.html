@@ -15,7 +15,7 @@
       ></div>
       <ng-container *ngIf="tree$ | async as tree">
         <!--          TODO username / project name-->
-<!--        <app-a-breadcrumbs></app-a-breadcrumbs>-->
+        <app-a-breadcrumb *ngIf="breadcrumbs$ | async as breadcrumbs" [breadcrumbs]="breadcrumbs"></app-a-breadcrumb>
       </ng-container>
       <h1>
         <app-m-tree-name [projectId]="projectId" [treeId]="treeId"></app-m-tree-name>

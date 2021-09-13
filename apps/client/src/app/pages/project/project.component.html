@@ -9,7 +9,7 @@
     <div class="mr-auto">
       <h1>
         <ng-container *ngIf="project$ | async as project">
-<!--          <app-a-breadcrumbs [current]="project.name"></app-a-breadcrumbs>-->
+          <app-a-breadcrumb *ngIf="breadcrumbs$ | async as breadcrumbs" [breadcrumbs]="breadcrumbs"></app-a-breadcrumb>
         </ng-container>
       </h1>
     </div>

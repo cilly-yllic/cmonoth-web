@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { TreeComponent } from './tree.component'
 
-// import { BreadcrumbsModule } from '~atoms/breadcrumbs/breadcrumbs.module'
+import { BreadcrumbModule } from '~atoms/breadcrumb/breadcrumb.module'
 import { AreaMoverModule } from '~atoms/area-mover/area-mover.module'
 import { NameModule } from '~molecules/tree/name/name.module'
 import { DeleteModule } from '~molecules/tree/delete/delete.module'
@@ -18,7 +18,7 @@ import { TaskModule } from '~organisms/task/task.module'
   imports: [
     CommonModule,
 
-    // BreadcrumbsModule,
+    BreadcrumbModule,
     AreaMoverModule,
     NameModule,
     DeleteModule,

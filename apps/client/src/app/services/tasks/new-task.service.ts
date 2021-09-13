@@ -15,17 +15,17 @@ interface Condition {
 })
 export class NewTaskService {
   hoveringLineSbj = new BehaviorSubjectClass<Line | null>()
-  createTaskSbj = new BehaviorSubjectClass<Condition>()
+  createTaskSbj = new BehaviorSubjectClass<Condition | null>()
 
   createButtonPosition$: Observable<MiddlePoint | null> = this.hoveringLineSbj.observable.pipe(
     map((line) => (line ? getLineMiddlePoint(line) : null))
   )
 
-  createTaskPosition$: Observable<CreateTaskAreaPosition> = this.createTaskSbj.observable.pipe(
-    map(({ parent, child }) => getCreateTaskAreaPosition(parent, child)),
+  createTaskPosition$: Observable<CreateTaskAreaPosition | null> = this.createTaskSbj.observable.pipe(
+    map((condition) => condition ? getCreateTaskAreaPosition(condition.parent, condition.child) : null),
     tap((v) => console.log('v', v))
   )
-  createTaskLine$ = this.createTaskPosition$.pipe(map((position) => getNewLine(position.parent, position)))
+  createTaskLine$ = this.createTaskPosition$.pipe(map((position) => position ? getNewLine(position.parent, position) : null))
 
   constructor() {}
 
@@ -34,5 +34,8 @@ export class NewTaskService {
   }
   createTaskCondition(parent: TaskPosition, child?: TaskPosition | null) {
     this.createTaskSbj.next({ parent, child })
+  }
+  complete() {
+    this.createTaskSbj.next(null)
   }
 }

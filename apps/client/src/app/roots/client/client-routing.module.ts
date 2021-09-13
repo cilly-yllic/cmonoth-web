@@ -30,10 +30,24 @@ const routes: Routes = [
     //       { path: '**', redirectTo: './email' },
     //     ],
     //   },
-      { path: 'projects', pathMatch: 'full', component: ProjectsComponent },
-      { path: 'projects/:projectId', component: ProjectComponent, canActivate: [ProjectGuard] },
-      { path: 'trees', component: TreesComponent },
-      { path: 'trees/:projectId/:treeId', component: TreeComponent, canActivate: [TreeGuard] },
+      {
+        path: 'projects',
+        children: [
+          { path: '', pathMatch: 'full', component: ProjectsComponent },
+          { path: ':projectId', component: ProjectComponent, canActivate: [ProjectGuard] },
+        ]
+      },
+      {
+        path: 'trees',
+        children: [
+          { path: '', component: TreesComponent },
+          { path: ':projectId/:treeId', component: TreeComponent, canActivate: [TreeGuard] },
+        ]
+      },
+      // { path: 'projects', pathMatch: 'full', component: ProjectsComponent, data: { breadcrumb: 'Projects' } },
+      // { path: 'projects/:projectId', component: ProjectComponent, canActivate: [ProjectGuard], data: { breadcrumb: 'Projects' } },
+      // { path: 'trees', component: TreesComponent },
+      // { path: 'trees/:projectId/:treeId', component: TreeComponent, canActivate: [TreeGuard] },
       { path: '**', component: DashboardComponent },
     ],
   },
