@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core'
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core'
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router'
-import { Observable } from 'rxjs'
+import { Observable, Subject } from 'rxjs'
 import { mergeMap, map } from 'rxjs/operators'
 import { Project } from '~types/db/client/projects'
 import { Tree } from '~types/db/client/project/trees'
@@ -14,13 +14,19 @@ interface Query {
   type?: string
 }
 
+interface Close {
+  commands: any[]
+  extra: NavigationExtras
+}
+
 @Component({
   selector: 'app-o-task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss'],
 })
-export class TaskComponent extends SubscriptionsDirective implements OnChanges {
+export class TaskComponent extends SubscriptionsDirective implements OnInit, OnChanges {
   sbj = new BehaviorSubjectClass<EachQuery>()
+  closeSbj = new Subject<Close>()
   @Input() projectId: Project['id'] = ''
   @Input() treeId: Tree['id'] = ''
   @Input() taskId: Task['id'] = ''
@@ -40,7 +46,19 @@ export class TaskComponent extends SubscriptionsDirective implements OnChanges {
     super()
   }
 
-  ngOnChanges(): void {
+  ngOnInit() {
+    this.subscriptions.add(
+      this.closeSbj.asObservable()
+        .pipe(
+          mergeMap(({ commands, extra }) => this.routerSv.clientNavigate(commands, extra))
+        )
+        .subscribe()
+    )
+  }
+
+  ngOnChanges({ projectId, treeId, taskId }: SimpleChanges): void {
+    console.log('ngOnChanges')
+    console.log(projectId, treeId, taskId)
     if (!this.projectId || !this.treeId || !this.taskId) {
       return
     }
@@ -56,6 +74,6 @@ export class TaskComponent extends SubscriptionsDirective implements OnChanges {
   }
 
   onClose() {
-    this.subscriptions.add(this.routerSv.clientNavigate(['trees', this.projectId, this.treeId], this.__getNavigationQueryParams()).subscribe())
+    this.closeSbj.next({ commands: ['trees', this.projectId, this.treeId], extra: this.__getNavigationQueryParams() })
   }
 }

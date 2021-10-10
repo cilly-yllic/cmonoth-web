@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
-import { Observable, of, from, throwError, combineLatest } from 'rxjs'
-import { mergeMap, switchMap, map, share, tap, take } from 'rxjs/operators'
+import {Observable, of, from, throwError, combineLatest, forkJoin} from 'rxjs'
+import { mergeMap, switchMap, map, share, tap, take, first } from 'rxjs/operators'
 
 import { Collection, FirestoreService, Query } from '~services/firebase/firestore.service'
 import { ClientsService } from '~services/db/clients.service'
@@ -19,8 +19,8 @@ import {
   IsFieldOption,
 } from '~utils/firebase/firestore'
 import { COLORS } from '~configs'
-import { Client } from "~types/db/clients";
-import { AllowUpdateTree, CreateTree, Tree, Trees, UpdateTree, COLLECTION_NAME as TREE_COLLECTION_NAME } from "~types/db/client/project/trees";
+import { Client } from '~types/db/clients'
+import { AllowUpdateTree, CreateTree, Tree, Trees, UpdateTree, COLLECTION_NAME as TREE_COLLECTION_NAME } from '~types/db/client/project/trees'
 import {
   AllowUpdateTask,
   CreateTask,
@@ -30,8 +30,9 @@ import {
   Structure as TaskStructure,
   CreateOrUpdateStructure as CreateOrUpdateTaskStructure,
   COLLECTION_NAME
-} from "~types/db/client/project/tree/tasks";
-import { Structure } from "~types/db/client/project/tree/structures";
+} from '~types/db/client/project/tree/tasks'
+import { Structure } from '~types/db/client/project/tree/structures'
+import { removeNum } from '~utils/tasks/tree-structure/structure'
 
 export interface EachQuery {
   projectId: Project['id']
@@ -221,5 +222,9 @@ export class TasksService extends ClientsService {
         return from(this.getSubCollection<Task>(clientId, projectId, treeId).doc(taskId).delete())
       })
     )
+  }
+
+  deleteAndUpdate(structure: Structure, projectId: Project['id'], treeId: Tree['id'], taskId: Task['id'], taskNum: Task['incrementNum']) {
+    return forkJoin([this.postOrUpdateStructure(removeNum(structure, [taskNum]), projectId, treeId), this.delete(projectId, treeId, taskId)])
   }
 }

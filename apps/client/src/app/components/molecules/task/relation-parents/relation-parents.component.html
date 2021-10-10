@@ -1,1 +1,10 @@
 <p>relation-parents works!</p>
+<ng-container *ngIf="tasksAndStructure$ | async as tasksAndStructure">
+  <mat-chip-list>
+    <div *ngFor="let task of tasksAndStructure.tasks">
+      <div *ngIf="task.isParent">
+        <mat-chip (click)="onDelete($event, task.id, task.incrementNum, tasksAndStructure.structure)">{{task.name}} <mat-icon>cancel</mat-icon></mat-chip>
+      </div>
+    </div>
+  </mat-chip-list>
+</ng-container>

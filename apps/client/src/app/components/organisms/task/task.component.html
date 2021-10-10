@@ -9,7 +9,7 @@
     </button>
   </div>
   <div class="description">
-    <!--    <app-m-task-description [taskId]="_taskId" [description]="description$ | async"></app-m-task-description>-->
+<!--    <app-m-task-description [taskId]="_taskId" [description]="description$ | async"></app-m-task-description>-->
   </div>
 </div>
 <div class="body flex-auto">
@@ -37,18 +37,18 @@
 
   <div class="related-task">
     <h4>related task</h4>
-    <!--    <app-m-task-relation-parents [taskId]="_taskId"></app-m-task-relation-parents>-->
+    <app-m-task-relation-parents [projectId]="projectId" [treeId]="treeId" [taskId]="taskId"></app-m-task-relation-parents>
     <!--    <app-m-task-relation-children [taskId]="_taskId"></app-m-task-relation-children>-->
   </div>
 
   <!-- ↓コメントリスト -->
   <div class="comment-list">
     <h4>Comment</h4>
-    <!--    <app-m-task-comments [taskId]="_taskId"></app-m-task-comments>-->
+    <app-m-task-comments [projectId]="projectId" [treeId]="treeId" [taskId]="taskId"></app-m-task-comments>
   </div>
 
   <!-- ↓コメントフォーム -->
   <div class="comment-form">
-    <!--    <app-m-task-comment [taskId]="_taskId"></app-m-task-comment>-->
+    <app-m-task-comment [projectId]="projectId" [treeId]="treeId" [taskId]="taskId"></app-m-task-comment>
   </div>
 </div>

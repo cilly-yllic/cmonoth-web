@@ -3,7 +3,33 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "module": "commonjs",
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+    "baseUrl": "./",
+    "paths": {
+      "~env": ["src/environments/environment"],
+      "~utils/*": ["src/app/utils/*"],
+      "~configs": ["src/app/configs/index.ts"],
+      "~configs/*": ["src/app/configs/*"],
+
+      "~validate": ["src/app/validate.ts"],
+
+      "~core/*": ["src/app/_core/*"],
+      "~services/*": ["src/app/services/*"],
+      "~types/*": ["src/app/types/*"],
+
+      "~roots/*": ["src/app/roots/*"],
+      "~pages/*": ["src/app/pages/*"],
+      "~layouts/*": ["src/app/layouts/*"],
+      "~animations/*": ["src/app/animations/*"],
+      "~modules/*": ["src/app/modules/*"],
+      "~dialogs": ["src/app/dialogs/index.ts"],
+      "~extends/*": ["src/app/extends/*"],
+
+      "~organisms/*": ["src/app/components/organisms/*"],
+      "~molecules/*": ["src/app/components/molecules/*"],
+      "~atoms/*": ["src/app/components/atoms/*"],
+      "~pipes/*": ["src/app/pipes/*"]
+    }
   },
   "files": ["src/test-setup.ts"],
   "include": ["**/*.spec.ts", "**/*.d.ts"]

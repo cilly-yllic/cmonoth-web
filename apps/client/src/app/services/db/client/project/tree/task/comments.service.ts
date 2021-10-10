@@ -30,7 +30,7 @@ export class CommentsService extends ClientsService {
     return this.getCollection().doc(clientId)
       .collection(PROJECT_COLLECTION_NAME).doc(projectId)
       .collection(TREE_COLLECTION_NAME).doc(treeId)
-      .collection(TASK_COLLECTION_NAME).doc(treeId)
+      .collection(TASK_COLLECTION_NAME).doc(taskId)
       .collection<T>(COLLECTION_NAME, query)
   }
 

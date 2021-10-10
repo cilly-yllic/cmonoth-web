@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { Observable, Subscription } from 'rxjs'
-import { map, mergeMap, take } from 'rxjs/operators'
+import { map, mergeMap, first } from 'rxjs/operators'
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 import { Project } from '~types/db/client/projects'
 import { Tree } from '~types/db/client/project/trees'
@@ -9,7 +9,6 @@ import { Task } from '~types/db/client/project/tree/tasks'
 import { AlternativeComponent, setConfig } from '~dialogs'
 import { SubscriptionsDirective } from '~extends/directives/subscriptions.directive'
 import { TasksService } from '~services/db/client/project/tree/tasks.service'
-import { remove } from '~utils/tasks/tree-structure/structure'
 
 @Component({
   selector: 'app-m-task-delete',
@@ -45,20 +44,11 @@ export class DeleteComponent extends SubscriptionsDirective {
     const taskId = this.task?.id as Task['id']
     const taskNum = this.task?.incrementNum as Task['incrementNum']
     console.log('__onDelete', this.task)
-    // this.tsSv.delete(this.task?.project_id, this.task?.tree_id, this.task?.id )
     this.tasksSv
-      .get(projectId, treeId)
+      .getOnesStructure(projectId, treeId)
       .pipe(
-        take(1),
-        map(({ tasks, structure }) => {
-          console.log('map', tasks, structure)
-          return remove(structure, taskNum)
-        }),
-        mergeMap((structure) => {
-          console.log('flatMap', structure)
-          return this.tasksSv.postOrUpdateStructure(structure, projectId, treeId)
-        }),
-        mergeMap(() => this.tasksSv.delete(projectId, treeId, taskId))
+        first(),
+        mergeMap((structure) => this.tasksSv.deleteAndUpdate(structure, projectId, treeId, taskId, taskNum))
       )
       .subscribe()
   }

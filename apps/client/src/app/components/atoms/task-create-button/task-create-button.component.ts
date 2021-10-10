@@ -27,7 +27,7 @@ export class TaskCreateButtonComponent extends SubscriptionsDirective implements
 
   onClick(e: Event, position: MiddlePoint) {
     e.stopPropagation()
-    this.newTaskSv.createTaskCondition(position.parent_task, position.child_task)
+    this.newTaskSv.createTaskCondition(position.parentTask, position.childTask)
   }
 
   get current(): MiddlePoint | null {

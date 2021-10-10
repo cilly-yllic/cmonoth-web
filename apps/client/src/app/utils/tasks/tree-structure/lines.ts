@@ -19,8 +19,8 @@ export interface LineIf {
 }
 
 export interface Line extends LineIf {
-  parent_task: TaskPosition
-  child_task: TaskPosition | null
+  parentTask: TaskPosition
+  childTask: TaskPosition | null
 }
 
 const LINE = (): LineIf => ({
@@ -78,8 +78,8 @@ export const get = (parentTask: TaskPosition, childTask: TaskPosition): Line => 
   D(line)
   return {
     ...line,
-    parent_task: parentTask,
-    child_task: childTask,
+    parentTask,
+    childTask,
   }
 }
 
@@ -102,7 +102,7 @@ export const getNewLine = (parentTask: TaskPosition, childTask: Position): Line 
   D(line)
   return {
     ...line,
-    parent_task: parentTask,
-    child_task: null,
+    parentTask,
+    childTask: null,
   }
 }

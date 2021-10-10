@@ -4,4 +4,5 @@ import { Component } from '@angular/core'
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.scss'],
 })
-export class ClientComponent {}
+export class ClientComponent {
+}
