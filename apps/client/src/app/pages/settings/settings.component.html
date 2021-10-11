@@ -1,0 +1,31 @@
+<div class="ui-page-header ui-header-primary">
+  <h1>アカウント設定</h1>
+</div>
+<div class="ui-main-inner ui-page-settings">
+  <ng-container *ngIf="links$ | async as links">
+    <app-a-tab-link [links]="links"></app-a-tab-link>
+  </ng-container>
+  <div [ngSwitch]="type$ | async" class="mt-4">
+    <div *ngSwitchCase="'account'">
+      <app-o-settings-client></app-o-settings-client>
+    </div>
+<!--    <div *ngSwitchCase="'password'">-->
+<!--      <app-o-settings-password></app-o-settings-password>-->
+<!--    </div>-->
+<!--    <div *ngSwitchCase="'emails'">-->
+<!--      <app-o-settings-emails></app-o-settings-emails>-->
+<!--    </div>-->
+<!--    <div *ngSwitchCase="'twoStepAuthentication'">-->
+<!--      &lt;!&ndash;      <app-o-settings-two-step-authentication></app-o-settings-two-step-authentication>&ndash;&gt;-->
+<!--    </div>-->
+<!--    <div *ngSwitchCase="'snsOAuth'">-->
+<!--      <app-o-settings-oauth></app-o-settings-oauth>-->
+<!--    </div>-->
+<!--    <div *ngSwitchCase="'files'">-->
+<!--      <app-o-settings-files></app-o-settings-files>-->
+<!--    </div>-->
+    <!--<div *ngSwitchCase="'paymentMethod'">-->
+    <!--<app-o-settings-payment-method></app-o-settings-payment-method>-->
+    <!--</div>-->
+  </div>
+</div>

@@ -17,7 +17,7 @@ export interface Organization extends Base, Get {
   id: string
 }
 
-export interface AllowUpdateUser {
+export interface AllowUpdateOrganization {
   subdomain?: string
   createdUserId?: User['id']
   domainWhitelist?: string // xx,xx,xx,...
@@ -26,6 +26,6 @@ export interface AllowUpdateUser {
   iconPath?: string
 }
 
-export interface UpdateUser extends AllowUpdateUser, Update {}
+export interface UpdateOrganization extends AllowUpdateOrganization, Update {}
 
 export type Organizations = Organization[]

@@ -13,5 +13,5 @@ export const getUsernameFromControl = (username: string = '', asyncValidatorFns:
       Validators.maxLength(USERNAME.maxLength),
       Validators.pattern(USERNAME.pattern),
     ],
-    ...asyncValidatorFns
+    asyncValidatorFns
   )

@@ -1,0 +1,12 @@
+import { Component, OnInit } from '@angular/core'
+
+@Component({
+  selector: 'app-o-settings-client-org',
+  templateUrl: './org.component.html',
+  styleUrls: ['./org.component.scss'],
+})
+export class OrgComponent implements OnInit {
+  constructor() {}
+
+  ngOnInit(): void {}
+}

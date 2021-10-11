@@ -29,7 +29,11 @@ interface Task extends firebase.storage.UploadTask {
   providedIn: 'root',
 })
 export class StorageService {
-  constructor(private afStorage: AngularFireStorage) {}
+  constructor(private afStorage: AngularFireStorage) {
+    if (environment.useEmulators) {
+      this.afStorage.storage.useEmulator('localhost', 9199);
+    }
+  }
 
   // post() {
   //   this.storage.storage

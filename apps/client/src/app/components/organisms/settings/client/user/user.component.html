@@ -1,0 +1,86 @@
+<form [formGroup]="form" (ngSubmit)="onUpdate($event)" method="post">
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">プロフィール画像</label>
+    <div class="col-sm-10">
+      <!--      <app-a-image-controller [settings]="settings" [defaultPath]="'assets/images/avatar_no.png'" [path]="backup?.avatar_path" (changed)="imageClass.status = $event" (uploaded)="imageClass.onUploaded( $event )"></app-a-image-controller>-->
+      <app-a-image-controller [path]="photoUrl$ | async" [dummyPath]="'assets/images/avatar_no.png'"></app-a-image-controller>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">ユーザー名</label>
+    <div class="col-sm-10 form-inline">
+      <mat-form-field appearance="outline">
+        <mat-label>ユーザー名</mat-label>
+        <input matInput placeholder="ユーザー名" [formControl]="name" name="Username" />
+        <mat-error *ngIf="name.errors?.exist">この ユーザー名 は使用できません</mat-error>
+        <mat-error *ngIf="name.errors?.minlength">4文字以上を設定してください</mat-error>
+        <mat-error *ngIf="name.errors?.pattern"
+          ><span [innerHTML]="'使える文字形式は <em>英数字・_ or -</em>です'"></span
+        ></mat-error>
+      </mat-form-field>
+      <app-a-spinner [spinning]="name.errors?.checking"></app-a-spinner>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">名前</label>
+    <div class="col-sm-10 form-inline">
+      <mat-form-field appearance="outline">
+        <mat-label>名前</mat-label>
+        <input
+          matInput
+          placeholder="名前"
+          formControlName="displayName"
+          name="FullName"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">自己紹介</label>
+    <div class="col-sm-10">
+      <mat-form-field appearance="outline" class="d-block">
+        <textarea
+          matInput
+          placeholder="自己紹介"
+          formControlName="selfIntroduction"
+          name="SelfIntroduction"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+<!--  <div class="form-group row">-->
+<!--    <label class="col-sm-2 col-form-label">表示言語</label>-->
+<!--    <div class="col-sm-10 form-inline">-->
+<!--      <app-a-select-option [data]="languageData" [column]="'name'" [formControl]="language" ngDefaultControl></app-a-select-option>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="form-group row">-->
+<!--    <label class="col-sm-2 col-form-label">タイムゾーン</label>-->
+<!--    <div class="col-sm-10 form-inline">-->
+<!--      <app-a-select-option-->
+<!--        [data]="regionData"-->
+<!--        [column]="'name'"-->
+<!--        [translate]="true"-->
+<!--        [formControl]="region"-->
+<!--        ngDefaultControl-->
+<!--      ></app-a-select-option>-->
+<!--      <div *ngIf="selectTime$ | async as selectTime" class="ml-2">{{ selectTime }}</div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+  <div class="row justify-content-end">
+    <div class="col-sm-10">
+      <div *ngIf="updated" class="alert alert-success" role="alert">更新されました</div>
+      <button type="submit" class="btn btn-primary" [disabled]="disabled">保存する</button>
+      <app-a-spinner [spinning]="updating"></app-a-spinner>
+    </div>
+  </div>
+</form>
+
+<hr />
+
+<div class="row justify-content-end">
+  <div class="col-sm-10">
+<!--    <app-m-settings-client-delete></app-m-settings-client-delete>-->
+  </div>
+</div>
